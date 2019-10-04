@@ -11,9 +11,7 @@ import MainNavigation from '../components/Navigation/MainNavigation';
 import Footer from '../components/Footer/Footer';
 
 class LandingPage extends Component {
-    constructor(props){
-        super(props);
-    }
+   
     render(){
         return(
             <div className='landing'>

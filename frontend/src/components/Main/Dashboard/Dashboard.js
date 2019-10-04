@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Dashboard.css';
-import Charts from './Chart/Charts'
+import Charts from './Chart/Charts';
 export default class Dashboard extends Component {
     state = {
         projects: [],
@@ -64,7 +64,7 @@ export default class Dashboard extends Component {
                         </div>
                         <div className="col-sm-6">
                             <ol className="breadcrumb float-sm-right">
-                            <li className="breadcrumb-item"><a href="#">Home</a></li>
+                            <li className="breadcrumb-item"><a >Home</a></li>
                             <li className="breadcrumb-item active">Dashboard</li>
                             </ol>
                         </div>
@@ -84,7 +84,7 @@ export default class Dashboard extends Component {
                             <div className="icon">
                                 <i className="ion ion-clipboard"></i>
                             </div>
-                            <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
+                            <a  className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <div className="col-lg-3 col-6">
@@ -98,7 +98,7 @@ export default class Dashboard extends Component {
                             <div className="icon">
                                 <i className="ion ion-bug"></i>
                             </div>
-                            <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
+                            <a  className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <div className="col-lg-3 col-6">
@@ -126,14 +126,16 @@ export default class Dashboard extends Component {
                             <div className="icon">
                                 <i className="far fa-envelope"></i>
                             </div>
-                            <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
+                            <a  className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <div className='row'>
                         <Charts/>
                     </div>
+                   
                 </section>
+                
             </div>
            
         )

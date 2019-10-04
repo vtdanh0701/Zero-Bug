@@ -37,8 +37,10 @@ class App extends Component {
     })
   }
   render(){
+    
     return (
-      <body className='hold-transition sidebar-mini layout-fixed'>
+
+        <div className='wrapper'>
       <Router>
         
         <React.Fragment>
@@ -49,27 +51,32 @@ class App extends Component {
             tokenExpiration: this.state.tokenExpiration, 
             login: this.login, 
             logout: this.logout}}>
-          <main className='wrapper'>
+          
           <Switch>
-            { this.state.token && <Redirect from='/' to='/main' exact/> }
-            { this.state.token && <Redirect from='/auth' to='/main' exact/> }
-            { !this.state.token && <Route path='/' component={LandingPage} exact/> }
 
+
+            { this.state.token && <Route path='/' component={MainPage}/>}
+            { !this.state.token && <Route path='/' component={LandingPage} exact/> }
             <Route path='/auth' component={AuthPage} exact/>
-            { this.state.token && <Route path='/main' render={(props) => <MainPage {...props} userId={this.state.userId}/> }/>}
-            {/* { !this.state.token && <Redirect from='/main' to='/' exact/> } */}
-           
           </Switch>
-          <Route path='/main' component={MainPage}/>
-          <Route path='/main/dashboard' component={Dashboard}/>
-          <Route path='/main/project' exact component={Project}/>
-          <Route path='/main/bug' exact component={Bug}/>
-          <Route path='/main/user' exact component={User}/>
-          </main>
+           
+          
         </AuthContext.Provider>
+        {this.state.token && 
+              <div>
+              
+              <Route path='/dashboard' exact component={Dashboard}/>
+              <Route path='/project' exact component={Project}/>
+              <Route path='/bug' exact component={Bug}/>
+              <Route path='/user' exact component={User}/>
+              </div>
+            }
         </React.Fragment>
+       
+          
       </Router>
-      </body>
+      </div>
+
     );
 }}
 

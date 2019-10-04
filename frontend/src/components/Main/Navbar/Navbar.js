@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import './Navbar.css';
 
 export default class Navbar extends Component {
     render() {
@@ -10,25 +11,7 @@ export default class Navbar extends Component {
       <li className="nav-item">
         <a className="nav-link" data-widget="pushmenu" href="#"><i className="fas fa-bars"></i></a>
       </li>
-      <li className="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" className="nav-link">Home</a>
-      </li>
-      <li className="nav-item d-none d-sm-inline-block">
-        <a href="#" className="nav-link">Contact</a>
-      </li>
     </ul>
-
-    {/* <!-- SEARCH FORM --> */}
-    <form className="form-inline ml-3">
-      <div className="input-group input-group-sm">
-        <input className="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"/>
-        <div className="input-group-append">
-          <button className="btn btn-navbar" type="submit">
-            <i className="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
 
     {/* <!-- Right navbar links --> */}
     <ul className="navbar-nav ml-auto">
@@ -52,7 +35,7 @@ export default class Navbar extends Component {
                 <p className="text-sm text-muted"><i className="far fa-clock mr-1"></i> 4 Hours Ago</p>
               </div>
             </div>
-            {/* <!-- Message End --> */}
+            
           </a>
           <div className="dropdown-divider"></div>
           <a href="#" className="dropdown-item">
@@ -90,6 +73,7 @@ export default class Navbar extends Component {
           <a href="#" className="dropdown-item dropdown-footer">See All Messages</a>
         </div>
       </li>
+
       {/* <!-- Notifications Dropdown Menu --> */}
       <li className="nav-item dropdown">
         <a className="nav-link" data-toggle="dropdown" href="#">
@@ -153,11 +137,6 @@ export default class Navbar extends Component {
             <a href="#" className="btn btn-default btn-flat float-right">Sign out</a>
           </li>
         </ul>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-          <i className="fas fa-th-large"></i>
-        </a>
       </li>
     </ul>
   </nav>

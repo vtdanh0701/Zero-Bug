@@ -420,7 +420,7 @@
      */
 
 
-    $(window).on('load', function () {
+    $(document).ready(function () {
       Layout._jQueryInterface.call($('body'));
     });
     $(Selector.SIDEBAR + ' a').on('focusin', function () {
@@ -637,7 +637,7 @@
 
       PushMenu._jQueryInterface.call($(button), 'toggle');
     });
-    $(window).on('load', function () {
+    $(document).ready(function () {
       PushMenu._jQueryInterface.call($(Selector.TOGGLE_BUTTON));
     });
     /**
@@ -1014,7 +1014,7 @@
      */
 
 
-    $(window).on('load', function () {
+    $(document).ready(function () {
       TodoList._jQueryInterface.call($(Selector.DATA_TOGGLE));
     });
     /**
