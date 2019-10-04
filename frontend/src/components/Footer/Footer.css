@@ -1,0 +1,32 @@
+footer{
+    border-top: 1px solid black;
+    bottom: 0;
+    color: #000;
+    width: 100%;
+    align-items: baseline;
+    display: flex;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    justify-content: space-between;
+    margin-top: 10px;
+
+   
+}
+.social-container{
+    align-items: center;
+    display: flex;
+}
+footer a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, .80);
+    font-size: 35px;
+    margin: 10px;
+    
+}
+footer a:hover{
+    color: #DDCFA2;
+}
+.copy-right{
+    color: rgba(0, 0, 0, .80);
+    font-size: 15px;
+}

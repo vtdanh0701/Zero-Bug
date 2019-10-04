@@ -1,0 +1,19 @@
+.auth-page{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.auth-page form{
+    width: 100%;
+}
+.auth-page .btn{
+    width: 100%;
+    background-color: rgb(33, 190, 117);
+    border-color: rgb(33, 190, 117);
+    margin-top: 1rem;
+}
+.auth-page .btn:hover{
+    background-color: rgb(95, 219, 161);
+    border-color: rgb(114, 224, 173);
+}
