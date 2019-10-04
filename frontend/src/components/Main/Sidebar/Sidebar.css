@@ -1,13 +1,37 @@
-.rotate{
-    animation: rotate-keyframes .5s;
-    animation-fill-mode: forwards;
+.nav .show{
+    animation: show .5s ease-in-out forwards;
+    -webkit-animation: show .5s ease-in-out forwards;
+    overflow: hidden;
+}
+.hidden{
+    max-height: 0;
+    overflow: hidden;
+    animation: hidden .5s  forwards;
+    -webkit-animation: hidden .5s forwards;
+}
+@keyframes show{
+    0%{
+        max-height: 0;
+    }
+    100%{
+        max-height: 234px;
+    }
+}
+@keyframes hidden{
+    0%{
+        max-height: 234px;
+    }
+    100%{
+        max-height: 0;
+    }
 }
 
-@keyframes rotate-keyframes{
-    from{
-        transform: rotate(0deg);
-    }
-    to{
-        transform: rotate(-90deg)
-    }
+.fa-angle-left{
+    transition: 1s ease-in-out;
+    transform: rotate(0deg);
 }
+.rotate{
+    transform: rotate(-90deg);
+    transition: 1s ease-in-out;
+}
+

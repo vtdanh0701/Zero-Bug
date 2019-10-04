@@ -14,6 +14,8 @@ import Dashboard from './components/Main/Dashboard/Dashboard'
 import Project from './components/Main/Project/Project'
 import Bug from './components/Main/Bug/Bug'
 import User from './components/Main/User/User'
+import Sidebar from './components/Main/Sidebar/Sidebar';
+import Navbar from './components/Main/Navbar/Navbar';
 
 
 class App extends Component {
@@ -42,7 +44,12 @@ class App extends Component {
 
         <div className='wrapper'>
       <Router>
-        
+      {this.state.token && 
+          <div className='wrapper'>
+            <Sidebar/>
+            <Navbar/>
+          </div>
+          }
         <React.Fragment>
         <AuthContext.Provider 
           value={{
@@ -55,7 +62,7 @@ class App extends Component {
           <Switch>
 
 
-            { this.state.token && <Route path='/' component={MainPage}/>}
+            { this.state.token && <Route path='/' exact component={Dashboard}/>}
             { !this.state.token && <Route path='/' component={LandingPage} exact/> }
             <Route path='/auth' component={AuthPage} exact/>
           </Switch>
@@ -63,15 +70,15 @@ class App extends Component {
           
         </AuthContext.Provider>
         {this.state.token && 
-              <div>
+              <>            
+              <Route path='/project'  component={Project}/>
+              <Route path='/bug'  component={Bug}/>
+              <Route path='/user' component={User}/>
               
-              <Route path='/dashboard' exact component={Dashboard}/>
-              <Route path='/project' exact component={Project}/>
-              <Route path='/bug' exact component={Bug}/>
-              <Route path='/user' exact component={User}/>
-              </div>
+              </>
             }
         </React.Fragment>
+       
        
           
       </Router>

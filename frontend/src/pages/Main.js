@@ -19,13 +19,8 @@ class MainPage extends Component {
         
             <>
                 <Navbar/>
-                <Sidebar/>
-
-                <Route path='/dashboard' exact component={Dashboard}/>
-              <Route path='/project' exact component={Project}/>
-              {/* <Route path='/bug' exact component={Bug}/>
-              <Route path='/user' exact component={User}/> */}
-
+                
+                <Dashboard/>
             </>
            
         )

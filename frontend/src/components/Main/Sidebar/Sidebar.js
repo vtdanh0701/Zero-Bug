@@ -19,31 +19,7 @@ export default class Sidebar extends Component {
         console.log("click" + this.state.toggle)
     }
     render() {
-        let content
-        if(this.state.toggle){
-          content= 
-            <ul className="nav">
-              <li className="nav-item">
-                <a href="#" className="nav-link">
-                  <i className="far fa-circle nav-icon"></i>
-                  <p>All Projects</p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link">
-                  <i className="far fa-circle nav-icon"></i>
-                  <p>Create Project</p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link">
-                  <i className="far fa-circle nav-icon"></i>
-                  <p>Edit Project</p>
-                </a>
-              </li>
-            </ul>
-          
-        }
+        
         
         return (
           <aside className="main-sidebar sidebar-dark-primary elevation-4">
@@ -62,7 +38,7 @@ export default class Sidebar extends Component {
       <nav className="mt-2">
         <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li className="nav-item">
-            <NavLink to='/dashboard' className="nav-link">
+            <NavLink to='/' className="nav-link">
               <i className="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -80,7 +56,26 @@ export default class Sidebar extends Component {
                 <span className="badge badge-info right">6</span>
               </p>
             </a>
-            {content}
+            <ul className={ this.state.toggle ? "nav show" : "nav hidden"} >
+              <li className="nav-item">
+                <NavLink to='/project'  className="nav-link">
+                  <i className="far fa-circle nav-icon"></i>
+                  <p>All Projects</p>
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <a href="#" className="nav-link">
+                  <i className="far fa-circle nav-icon"></i>
+                  <p>Create Project</p>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="#" className="nav-link">
+                  <i className="far fa-circle nav-icon"></i>
+                  <p>Edit Project</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li className="nav-item has-treeview">
             <a href="#" className="nav-link">

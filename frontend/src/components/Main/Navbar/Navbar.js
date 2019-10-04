@@ -5,6 +5,7 @@ import './Navbar.css';
 export default class Navbar extends Component {
     render() {
         return (
+            <div className='wrapper'>
             <nav className="main-header navbar navbar-expand navbar-white navbar-light">
     {/* <!-- Left navbar links --> */}
     <ul className="navbar-nav">
@@ -140,6 +141,7 @@ export default class Navbar extends Component {
       </li>
     </ul>
   </nav>
+  </div>
 
         )
     }
