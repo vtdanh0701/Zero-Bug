@@ -18,6 +18,7 @@ import Sidebar from './components/Main/Sidebar/Sidebar';
 import Navbar from './components/Main/Navbar/Navbar';
 
 
+
 class App extends Component {
   state = {
     token: null,
@@ -48,6 +49,7 @@ class App extends Component {
           <div className='wrapper'>
             <Sidebar/>
             <Navbar/>
+            
           </div>
           }
         <React.Fragment>
@@ -71,7 +73,7 @@ class App extends Component {
         </AuthContext.Provider>
         {this.state.token && 
               <>            
-              <Route path='/project'  component={Project}/>
+              <Route path='/project' exact component={Project}/>
               <Route path='/bug'  component={Bug}/>
               <Route path='/user' component={User}/>
               

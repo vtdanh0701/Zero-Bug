@@ -48,7 +48,7 @@ export default class Sidebar extends Component {
           
           
           <li className="nav-item" >
-            <a href="#" onClick={this.toggle} className="nav-link">
+            <a onClick={this.toggle} className="nav-link">
               <i className="nav-icon fas fa-copy"></i>
               <p>
                 Projects
@@ -58,16 +58,16 @@ export default class Sidebar extends Component {
             </a>
             <ul className={ this.state.toggle ? "nav show" : "nav hidden"} >
               <li className="nav-item">
-                <NavLink to='/project'  className="nav-link">
+                <NavLink to='/project' exact className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
                   <p>All Projects</p>
                 </NavLink>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <NavLink to='/project/create' className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
                   <p>Create Project</p>
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">
