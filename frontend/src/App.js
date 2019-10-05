@@ -20,11 +20,17 @@ import Navbar from './components/Main/Navbar/Navbar';
 
 
 class App extends Component {
-  state = {
-    token: null,
-    userId: null,
-    tokenExpiration: null,
+  constructor(props){
+    super(props);
+    this.state ={
+      token: null,
+      userId: null,
+      tokenExpiration: null,
+    }
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
+  
 
   login = (token, userId, tokenExpiration) =>{
     this.setState({
@@ -42,16 +48,14 @@ class App extends Component {
   render(){
     
     return (
-
+      
         <div className='wrapper'>
       <Router>
-      {this.state.token && 
-          <div className='wrapper'>
-            <Sidebar/>
-            <Navbar/>
-            
-          </div>
-          }
+        {this.state.token && 
+        <div className='wrapper'>
+          <Navbar/>
+          <Route path='/' render={(props) => <Sidebar {...props}/>}/>
+        </div>}
         <React.Fragment>
         <AuthContext.Provider 
           value={{
@@ -64,7 +68,12 @@ class App extends Component {
           <Switch>
 
 
-            { this.state.token && <Route path='/' exact component={Dashboard}/>}
+            { this.state.token && <Route path='/' exact render={(props)=> 
+              <div className='wrapper'>
+                <Dashboard/> 
+              </div>
+              } />}
+
             { !this.state.token && <Route path='/' component={LandingPage} exact/> }
             <Route path='/auth' component={AuthPage} exact/>
           </Switch>

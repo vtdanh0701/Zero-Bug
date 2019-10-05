@@ -8,18 +8,31 @@ export default class Sidebar extends Component {
         super(props)
         this.state={
             toggle: false,
-            rotate: false
+            rotate: false,
+            selector: [] ,
+            newSelector: '',
+            url: this.props.location.pathname
         }
     }
-    toggle = () =>{
-        this.setState(prevState => ({
-          toggle : !prevState.toggle,
-          rotate: !prevState.rotate
-        }))
-        console.log("click" + this.state.toggle)
+    
+    
+    toggle = (e) =>{
+      let newSelector = e.currentTarget.dataset.id
+      let selector = this.state.selector
+      let remove = this.state.selector.indexOf(newSelector)
+      if(selector.includes(newSelector)){
+        this.setState({
+          selector: this.state.selector.filter((_, i) => i != remove)
+        }, () => {console.log(this.state.selector)})
+      } else {
+        this.setState({
+          selector: [...this.state.selector, newSelector]
+        }, ()=>{console.log(this.state.selector)})
+      }
     }
     render() {
-        
+        var url = this.props.location.pathname
+        var selector = this.state.selector
         
         return (
           <aside className="main-sidebar sidebar-dark-primary elevation-4">
@@ -33,12 +46,13 @@ export default class Sidebar extends Component {
     </a>
 
 
-    <div className="sidebar">
+    <div  className="sidebar">
 
       <nav className="mt-2">
-        <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul className="nav nav-pills nav-sidebar flex-column" data-widget='treeview' data-accordion='false'  role="menu" >
+          
           <li className="nav-item">
-            <NavLink to='/' className="nav-link">
+            <NavLink to='/' exact className="nav-link" activeClassName='active'>
               <i className="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -48,90 +62,100 @@ export default class Sidebar extends Component {
           
           
           <li className="nav-item" >
-            <a onClick={this.toggle} className="nav-link">
+            
+            <a  data-id="project"
+                onClick={this.toggle.bind(this)}
+                className= {url.includes('project') ? "nav-link active" : "nav-link" }>
+              
               <i className="nav-icon fas fa-copy"></i>
               <p>
                 Projects
-                <i className={this.state.rotate ? "fas fa-angle-left right rotate" : "fas fa-angle-left right"}></i>
-                <span className="badge badge-info right">6</span>
+                <i className={selector.includes('project') ? "right fas fa-angle-left rotate" : "right fas fa-angle-left"}></i>
+
               </p>
             </a>
-            <ul className={ this.state.toggle ? "nav show" : "nav hidden"} >
+            
+            <ul className={ selector.includes('project') ? "nav show" : "nav  hidden"} >
               <li className="nav-item">
-                <NavLink to='/project' exact className="nav-link">
+                <NavLink to='/project' exact className="nav-link" activeClassName='active'>
                   <i className="far fa-circle nav-icon"></i>
                   <p>All Projects</p>
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to='/project/create' className="nav-link">
+                <NavLink to='/project/create' exact className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
                   <p>Create Project</p>
                 </NavLink>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <NavLink to='/project/edit' exact className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
                   <p>Edit Project</p>
-                </a>
+                </NavLink>
               </li>
             </ul>
           </li>
-          <li className="nav-item has-treeview">
-            <a href="#" className="nav-link">
+          <li className="nav-item">
+            <a  data-id="issue"
+                onClick={this.toggle.bind(this)}
+                className={url.includes('issue') ? "nav-link active" : "nav-link"}>
               <i className="nav-icon fas fa-chart-pie"></i>
               <p>
                 Issues
-                <i className="right fas fa-angle-left"></i>
+                <i className= {selector.includes('issue') ? "right fas fa-angle-left rotate" : "right fas fa-angle-left"}></i>
               </p>
             </a>
-            <ul className="nav nav-treeview">
+            <ul className={ selector.includes('issue') ? "nav show" : "nav hidden"}>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <NavLink to='/issue' exact className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
                   <p>All Issues</p>
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <NavLink to='/issue/create' className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
                   <p>Create Issues</p>
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <NavLink to='/issue/edit' className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
                   <p>Edit Issues</p>
-                </a>
+                </NavLink>
               </li>
             </ul>
           </li>
-          <li className="nav-item has-treeview">
-            <a href="#" className="nav-link">
+          
+          <li className="nav-item">
+            <a data-id='user'
+                onClick={this.toggle.bind(this)}
+               className={url.includes('user') ? "nav-link active" : "nav-link"}>
               <i className="nav-icon fas fa-tree"></i>
               <p>
                 Users
-                <i className="fas fa-angle-left right"></i>
+                <i className={selector.includes('user') ? "right fas fa-angle-left rotate" : "right fas fa-angle-left"}></i>
               </p>
             </a>
-            <ul className="nav nav-treeview">
+            <ul className={ selector.includes('user') ? "nav show" : "nav hidden"}>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <NavLink to='/user' exact className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
                   <p>All Users</p>
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <NavLink to='/user/create' className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
                   <p>Create Users</p>
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">
+                <NavLink to='/user/edit' className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
                   <p>Edit Users</p>
-                </a>
+                </NavLink>
               </li>
             </ul>
           </li>

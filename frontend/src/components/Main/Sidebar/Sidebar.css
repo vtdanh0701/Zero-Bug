@@ -3,12 +3,20 @@
     -webkit-animation: show .5s ease-in-out forwards;
     overflow: hidden;
 }
+.nav .nav-item {
+    width: 100%;
+}
+.nav .nav-item .active{
+    background: rgba(255,255,255,.9);
+    color: #343a40;
+}
 .hidden{
     max-height: 0;
     overflow: hidden;
     animation: hidden .5s  forwards;
     -webkit-animation: hidden .5s forwards;
 }
+
 @keyframes show{
     0%{
         max-height: 0;
@@ -26,12 +34,14 @@
     }
 }
 
-.fa-angle-left{
+
+.nav-link .fa-angle-left {
     transition: 1s ease-in-out;
     transform: rotate(0deg);
+
 }
-.rotate{
+.nav-link .rotate{
     transform: rotate(-90deg);
     transition: 1s ease-in-out;
-}
+} 
 
