@@ -95,7 +95,7 @@ class AuthPage extends Component {
             <div className="form-group">
               <label htmlFor="email">Email address</label>
               <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" ref={this.emailEl}/>
-              <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+              <small id="emailHelp" className="emailHelp">We'll never share your email with anyone else.</small>
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>

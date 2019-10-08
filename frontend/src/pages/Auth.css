@@ -6,14 +6,20 @@
 }
 .auth-page form{
     width: 100%;
+    color: #555;
+}
+#emailHelp{
+    color: rgba(0, 0, 0, .8);
+    font-style: italic;
 }
 .auth-page .btn{
     width: 100%;
-    background-color: rgb(33, 190, 117);
-    border-color: rgb(33, 190, 117);
+    background-color: #ff5722;
+    border-color: #ff5722;
     margin-top: 1rem;
 }
 .auth-page .btn:hover{
-    background-color: rgb(95, 219, 161);
-    border-color: rgb(114, 224, 173);
+    background-color: #ff9800;
+    border-color: #ff9800;
 }
+

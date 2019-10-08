@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import './App.css';
+import './Animate.css'
 
 import AuthPage from './pages/Auth';
 import LandingPage from './pages/LandingPage';
@@ -16,6 +17,8 @@ import Bug from './components/Main/Bug/Bug'
 import User from './components/Main/User/User'
 import Sidebar from './components/Main/Sidebar/Sidebar';
 import Navbar from './components/Main/Navbar/Navbar';
+import SplashScreen from './components/SplashScreen/SplashScreen'
+import NewLandingPage from './pages/NewLandingPage';
 
 
 
@@ -26,11 +29,15 @@ class App extends Component {
       token: null,
       userId: null,
       tokenExpiration: null,
+      splashScreen: true
     }
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
   }
   
+  componentDidMount(){
+    setTimeout(() => this.setState({splashScreen: false}), 4000)
+  }
 
   login = (token, userId, tokenExpiration) =>{
     this.setState({
@@ -46,9 +53,12 @@ class App extends Component {
     })
   }
   render(){
-    
-    return (
-      
+    if(this.state.splashScreen){
+      return(
+        <SplashScreen/>
+      )
+    } else {
+      return (
         <div className='wrapper'>
       <Router>
         {this.state.token && 
@@ -74,7 +84,7 @@ class App extends Component {
               </div>
               } />}
 
-            { !this.state.token && <Route path='/' component={LandingPage} exact/> }
+            { !this.state.token && <Route path='/' component={NewLandingPage} exact/> }
             <Route path='/auth' component={AuthPage} exact/>
           </Switch>
            
@@ -82,7 +92,7 @@ class App extends Component {
         </AuthContext.Provider>
         {this.state.token && 
               <>            
-              <Route path='/project' exact component={Project}/>
+              <Route path='/project' component={Project}/>
               <Route path='/bug'  component={Bug}/>
               <Route path='/user' component={User}/>
               
@@ -96,6 +106,8 @@ class App extends Component {
       </div>
 
     );
+    }
+   
 }}
 
 export default App;

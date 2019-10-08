@@ -67,7 +67,7 @@ export default class Sidebar extends Component {
                 onClick={this.toggle.bind(this)}
                 className= {url.includes('project') ? "nav-link active" : "nav-link" }>
               
-              <i className="nav-icon fas fa-copy"></i>
+              <i className="nav-icon ion ion-clipboard"></i>
               <p>
                 Projects
                 <i className={selector.includes('project') ? "right fas fa-angle-left rotate" : "right fas fa-angle-left"}></i>
@@ -100,7 +100,7 @@ export default class Sidebar extends Component {
             <a  data-id="issue"
                 onClick={this.toggle.bind(this)}
                 className={url.includes('issue') ? "nav-link active" : "nav-link"}>
-              <i className="nav-icon fas fa-chart-pie"></i>
+              <i className="nav-icon ion ion-bug"></i>
               <p>
                 Issues
                 <i className= {selector.includes('issue') ? "right fas fa-angle-left rotate" : "right fas fa-angle-left"}></i>
@@ -132,7 +132,7 @@ export default class Sidebar extends Component {
             <a data-id='user'
                 onClick={this.toggle.bind(this)}
                className={url.includes('user') ? "nav-link active" : "nav-link"}>
-              <i className="nav-icon fas fa-tree"></i>
+              <i className="nav-icon fas fa-user"></i>
               <p>
                 Users
                 <i className={selector.includes('user') ? "right fas fa-angle-left rotate" : "right fas fa-angle-left"}></i>

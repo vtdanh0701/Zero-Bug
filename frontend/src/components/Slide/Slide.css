@@ -1,0 +1,149 @@
+
+
+.carousel-item{
+    height: 100%;
+    margin-top: 2.5rem;
+}
+.carousel-item .fa-chart-bar{
+    display: block;
+    font-size: 150px;
+    color: rgba(5, 5, 5, .1);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+}
+.circle{
+    border: 1px solid red;
+    border-radius: 100%;
+    height: 150px;
+    width: 150px;
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    
+}
+.circle i{
+    color: #ff5722;
+}
+.circle .user-container,.circle .bug-container,.circle .project-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    background: #f5bfaf;
+    position: absolute;
+    z-index: 1;
+}
+.circle .user-container{
+    bottom: -15px;
+    left: 50%;
+    transform: translate(-50%);
+}
+.circle .bug-container{
+    right: -5px;
+    top: 20px;
+}
+.circle .project-container{
+    left: -5px;
+    top: 20px;
+}
+.logo{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.carousel-caption{
+    color: #555;
+    padding: 0;
+    margin: 6rem 1rem 2rem 1rem;
+    left: 0;
+    position: relative;
+    bottom: 0;
+    height: 7rem;
+}
+.carousel-caption h5{
+    margin: 0;
+}
+.carousel-caption p{
+    margin-top: 1rem;
+}
+
+.carousel-indicators{
+    margin: 0;
+}
+.carousel-indicators li{
+    color: black;
+    background-color: #ff5722;
+    border-radius: 100%;
+    height: 5px;
+    width: 5px;
+}
+.carousel-control-prev-icon,.carousel-control-next-icon{
+   color: black;
+}
+@media only screen and (max-width: 480px){
+    .carousel-control-prev,.carousel-control-next{
+        display: none;
+    }
+}
+.circle-rotate{
+    animation-name: circle-rotate;
+    -webkit-animation-name: circle-rotate;
+    animation-duration: 1.2s;
+    -webkit-animation-duration: 1.2s;
+}
+.bug-rotate{
+    animation-name: bug-rotate;
+    -webkit-animation-name: bug-rotate;
+    animation-duration: 1.2s;
+    -webkit-animation-duration: 1.2s;
+}
+
+@keyframes circle-rotate{
+    from{
+        opacity: 0;
+        transform: scale(0) translate(-50%) rotate(0deg);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1) translate(-50%) rotate(359deg)
+    }
+}
+@-webkit-keyframes circle-rotate{
+    from{
+        opacity: 0;
+        -webkit-transform: translate(-50%) rotate(0deg);
+    }
+    to{
+        opacity: 1;
+        -webkit-transform: translate(-50%) rotate(359deg)
+    }
+}
+@keyframes bug-rotate{
+    from{
+        opacity: 0;
+        transform: scale(0) translate(-50%) rotate(-30deg);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1) translate(-50%) rotate(330deg)
+    }
+}
+@-webkit-keyframes bug-rotate{
+    from{
+        opacity: 0;
+        -webkit-transform: translate(-50%) rotate(-30deg);
+    }
+    to{
+        opacity: 1;
+        -webkit-transform: translate(-50%) rotate(330deg)
+    }
+}
