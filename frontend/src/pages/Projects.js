@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 
-import Modal from '../components/Modal/Modal';
-import Backdrop from '../components/Backdrop/Backdrop';
+
+
 import AuthContext from '../context/auth-context';
 
 
@@ -142,9 +142,9 @@ class ProjectsPage extends Component {
         })
         return(
             <>
-            {this.state.creating && <Backdrop/>}
+            
 
-            {this.state.creating && 
+            {/* {this.state.creating && 
                 <Modal 
                     title='Add Event' 
                     canCancel 
@@ -172,7 +172,7 @@ class ProjectsPage extends Component {
                             <textarea type='description' rows='4' ref={this.descriptionElRef}/>
                         </div>
                     </form>
-                </Modal>}
+                </Modal>} */}
             
             {this.context.token && (<div className='events-control'>
                 <p>Share your own Projects !</p>

@@ -9,4 +9,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+}
+.splash-screen .ion-bug{
+    transform: rotate(-30deg);
+    font-size: 150px;
+    color: #fc460f
 }

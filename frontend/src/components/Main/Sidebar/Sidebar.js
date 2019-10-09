@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Sidebar.css';
 import { NavLink} from 'react-router-dom';
-import logo from '../../../assets/img/logo.png'
+
 
 export default class Sidebar extends Component {
     constructor(props){
@@ -35,13 +35,13 @@ export default class Sidebar extends Component {
         var selector = this.state.selector
         
         return (
-          <aside className="main-sidebar sidebar-dark-primary elevation-4">
+          <aside className="main-sidebar sidebar-light-primary elevation-4">
 
     <a href="#" className="brand-link">
-      <img src={logo}
+      <i 
            alt="AdminLTE Logo"
-           className="brand-image img-circle "
-           style={{opacity: ".8"}}/>
+           className="brand-image img-circle ion ion-bug "
+           style={{opacity: ".8"}}></i>
       <span className="brand-text font-weight-light">Zero Bug</span>
     </a>
 

@@ -7,15 +7,15 @@ import cardImg1 from '../assets/img/card_img1.jpeg';
 import cardImg2 from '../assets/img/card_img2.png'
 import cardImg3 from '../assets/img/card_img3.png'
 import cardImg4 from '../assets/img/card_img4.jpg'
-import MainNavigation from '../components/Navigation/MainNavigation';
-import Footer from '../components/Footer/Footer';
+
+
 
 class LandingPage extends Component {
    
     render(){
         return(
             <div className='landing'>
-                <MainNavigation/>
+
                 <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                 <ol className="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
@@ -78,7 +78,7 @@ class LandingPage extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer/>
+
             </div>
         )
     }

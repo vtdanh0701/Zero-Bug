@@ -14,12 +14,14 @@
 }
 .auth-page .btn{
     width: 100%;
-    background-color: #ff5722;
-    border-color: #ff5722;
+    background-color: #fc6030;
+    border-color: #fc6030;
     margin-top: 1rem;
+    color: #ffffff
 }
 .auth-page .btn:hover{
-    background-color: #ff9800;
-    border-color: #ff9800;
+    
+    background-color: #fc450e;
+    border-color: #fc450e;
 }
 

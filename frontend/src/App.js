@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-do
 import './App.css';
 import './Animate.css'
 
-import AuthPage from './pages/Auth';
+
 import LandingPage from './pages/LandingPage';
 import MainPage from './pages/Main'
 import BookingsPage from './pages/Bookings';
 import ProjectsPage from './pages/Projects';
-import MainNavigation from './components/Navigation/MainNavigation';
+
 import AuthContext from './context/auth-context';
-import Footer from './components/Footer/Footer';
+
 import Dashboard from './components/Main/Dashboard/Dashboard'
 import Project from './components/Main/Project/Project'
 import Bug from './components/Main/Bug/Bug'
@@ -85,7 +85,7 @@ class App extends Component {
               } />}
 
             { !this.state.token && <Route path='/' component={NewLandingPage} exact/> }
-            <Route path='/auth' component={AuthPage} exact/>
+
           </Switch>
            
           

@@ -127,7 +127,9 @@
     "compile-sass": "node-sass src/assets/sass/light-bootstrap-dashboard-react.scss src/assets/css/light-bootstrap-dashboard-react.css",
     "minify-sass": "node-sass src/assets/sass/light-bootstrap-dashboard-react.scss src/assets/css/light-bootstrap-dashboard-react.min.css --output-style compressed",
     "map-sass": "node-sass src/assets/sass/light-bootstrap-dashboard-react.scss src/assets/css/light-bootstrap-dashboard-react.css --source-map true",
-    "css-compile": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js --output-style expanded --source-map true --source-map-contents true --precision 6 public/build/scss/AdminLTE.scss public/dist/css/adminlte.css"
+    "css-compile": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js --output-style expanded --source-map true --source-map-contents true --precision 6 public/build/scss/AdminLTE.scss public/dist/css/adminlte.css",
+    "scss": "node-sass --watch public/build/scss/AdminLTE.scss -o public/dist/css/adminlte.css",
+    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output public/dist/css/adminlte.min.css public/dist/css/adminlte.css"
   },
   "browserslist": {
     "production": [

@@ -1,18 +1,40 @@
-
-
-.carousel-item{
-    height: 40vh;
-    max-width: 475px;
-    width: auto;
-    margin-top: 1rem;
+.no-padding{
+    padding: 0;
+    margin: 0;
 }
-.carousel-item > .logo{
+.carousel{
+    width: 100%;
+    max-width: 475px;
+    height: 55vh;
+}
+.carousel-inner{
+    height: 100%;
+    width: 100%;
+    padding: 3rem 0 2rem 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.carousel-item{
+    height: 100%;
+    width: 100%;
+}
+
+
+.caption{
+    height: 15vh;
+    text-align: center;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: auto;
-    max-height: 30vh;
+    bottom: 0;
+    max-width: 475px;
+    width: 100%;
+    padding: 0 1rem;
+    color: #555;
+}
+.caption > h5{
+    font-weight: 600;
+}
+.carousel-control-prev-icon,.carousel-control-next-icon{
+    color: black;
 }
 .carousel-item .fa-chart-bar, .fa-desktop{
     display: block;
@@ -23,13 +45,8 @@
     left: 50%;
     transform: translate(-50%);
 }
-.carousel-item .fa-desktop{
-    left: 40%;
-    top: 20px;
-    transform: translate(-50%) perspective( 400px ) rotateY( 40deg );
-    font-size: 120px;
-    color: #ff5722;
-}
+
+/* SLIDE 2 STYLING */
 .circle{
     border: 1px solid red;
     border-radius: 100%;
@@ -67,27 +84,65 @@
     left: -5px;
     top: 20px;
 }
+.circle-rotate{
+    animation-name: circle-rotate;
+    -webkit-animation-name: circle-rotate;
+    animation-duration: 1.2s;
+    -webkit-animation-duration: 1.2s;
+}
+.bug-rotate{
+    animation-name: bug-rotate;
+    -webkit-animation-name: bug-rotate;
+    animation-duration: 1.2s;
+    -webkit-animation-duration: 1.2s;
+}
+/* END SLIDE 2 STYLING */
 
-
-.carousel-caption{
-    color: #555;
-    padding: 0;
-    margin: 6rem 0 3rem 1rem;
-    left: 0;
-    right: auto;
+/* SLIDE 3 STYLING */
+.carousel-item .fa-desktop{
+    left: 40.5%;
+    top: 20px;
+    transform: translate(-50%) perspective( 400px ) rotateY( 40deg );
+    font-size: 120px;
+    color: #ff5722;
+}
+.fa-mobile-alt{
+    color: #297373;
+    display: block;
+    font-size: 45px;
+    position: absolute;
+    top: 91px;
+    left: 58%;
+}
+ .fa-tablet-alt{
+    color: #39393A;
+    display: block;
+    font-size: 80px;
+    position: absolute;
+    top: 57px;
+    left: 42%;
+}
+.tablet-screen{
+    position: absolute;
+    left: 43.5%;
+    top: 64px;
+    background: #fff;
+    border-radius: 2px;
+    height: 53px;
+    width: 55px;
+}
+.tablet-screen > .ion-bug{
+    left: 52%;
+    font-size: 50px;
     top: 0;
-    position: relative;
-    height: 6rem;
-}
-.carousel-caption h5{
-    margin: 0;
-}
-.carousel-caption p{
-    margin-top: 1rem;
 }
 
+/* END SLIDE 3 STYLING */
+
+/* INDICATOR SLYLING */
 .carousel-indicators{
     margin: 0;
+    padding: 0;
 }
 .carousel-indicators li{
     color: black;
@@ -104,54 +159,9 @@
         display: none;
     }
 }
-.circle-rotate{
-    animation-name: circle-rotate;
-    -webkit-animation-name: circle-rotate;
-    animation-duration: 1.2s;
-    -webkit-animation-duration: 1.2s;
-}
-.bug-rotate{
-    animation-name: bug-rotate;
-    -webkit-animation-name: bug-rotate;
-    animation-duration: 1.2s;
-    -webkit-animation-duration: 1.2s;
-}
-.platform{   
-    position: relative;
-}
+/* END INDICATOR STYLING */
 
-
-
- .fa-mobile-alt{
-    color: #297373;
-    display: block;
-    font-size: 65px;
-    position: absolute;
-    top: 89px;
-    left: 64%;
-}
- .fa-tablet-alt{
-    color: #39393A;
-    display: block;
-    font-size: 80px;
-    position: absolute;
-    top: 57px;
-    left: 40%;
-}
-.tablet-screen{
-    position: absolute;
-    left: 49.2%;
-    top: 63px;
-    background: #fff;
-    border-radius: 2px;
-    height: 50px;
-    width: 50px;
-}
-.tablet-screen > .ion-bug{
-    left: 52%;
-    font-size: 50px;
-    top: 8px;
-}
+/* ANIMATION FOR SLIDE 2 */
 @keyframes circle-rotate{
     from{
         opacity: 0;
@@ -192,3 +202,14 @@
         -webkit-transform: translate(-50%) rotate(330deg)
     }
 }
+/* END SLIDE 2 ANIMATION */
+
+/* MEDIA QUERY FOR MOBILE */
+@media only screen and (max-width:475px){
+   
+    .caption{
+       padding: 0 5px;
+       margin: 0;
+   }
+}
+/* END MEDIA QUERY FOR MOBILE */

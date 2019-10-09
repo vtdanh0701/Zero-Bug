@@ -55,11 +55,11 @@ export default class Project extends Component {
         })
     } 
     render() {
-        const projectList = this.state.projects.map(project => {
+        const projectList = this.state.projects.map((project,i) => {
             return (
                 <tr key={project.id}>
                                     <td>
-                                        #
+                                        {i+1}
                                     </td>
                                     <td>
                                         <a>

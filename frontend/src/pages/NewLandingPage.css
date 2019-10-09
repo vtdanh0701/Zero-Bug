@@ -10,17 +10,18 @@
 .modal-dialog{
     border-radius: 0px;
     padding: 0;
-    max-width: 425px;
+    max-width: 475px;
     width: 100%;
     position: absolute;
-    top: 5%;
-    right: 5%;
+    top: -15px;
+    right: 50%;
+    transform: translate(50%);
     height: 80vh;
 }
 .modal-content{
     margin: 0;
     padding: 0;
-    max-width: 425px;
+    max-width: 475px;
     width: 100%;
     border-radius: 0px;
 }
@@ -56,8 +57,32 @@
     width: 50px;
 }
 .intro{
-    border: 1px solid red;
+    color: #fff;
+    max-width: 80%;
+    width: 50%;
+    height: 60%;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(0,-50%);
 }
+.intro > h1 {
+    font-size: 70px;
+    margin-bottom: 2rem;
+}
+.intro > h5 {
+    font-size: 40px;
+}
+.intro > p {
+    font-size: 20px;
+}
+.intro .ion-bug{
+    color: #a33816;
+    transform: rotate(-30deg);
+    font-size: 100px;
+    text-shadow: 4px 2px 7px rgba(255,255,255,0.66);
+}
+
 @media only screen and ( max-width: 480px){
     .intro{
         display: none;
@@ -67,10 +92,11 @@
     }
     .modal-dialog{
         width: 100%;
-        margin-right: 0px;
+        margin: 0px;
         padding: 0px;
         border: none;
         height: 100vh;
+        transform: translate(0);
         position: static !important;
     }
     .modal-content{

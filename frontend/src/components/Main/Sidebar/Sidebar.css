@@ -10,8 +10,7 @@
     width: 100%;
 }
 .nav .nav-item .active{
-    background: rgba(255,255,255,.9);
-    color: #ff5722;
+
 }
 .hidden{
     max-height: 0;

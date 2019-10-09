@@ -1,9 +1,9 @@
 import React, { Component} from 'react';
-import './Auth.css'
-import AuthContext from '../context/auth-context';
+import './LoginForm.css'
+import AuthContext from '../../context/auth-context';
 import $ from 'jquery';
 
-class AuthPage extends Component {
+class LoginForm extends Component {
     state = {
         isLogin: true,
         dataDismiss: ''
@@ -101,7 +101,7 @@ class AuthPage extends Component {
               <label htmlFor="password">Password</label>
               <input type="password" className="form-control" id="password" placeholder="Password" ref={this.passwordEl}/>
             </div>
-            <button type="submit" className="btn btn-primary">LOG IN</button>
+            <button type="submit" className="btn">LOG IN</button>
 
           </form>
           </div>
@@ -109,4 +109,4 @@ class AuthPage extends Component {
     }
 }
 
-export default AuthPage;
+export default LoginForm;

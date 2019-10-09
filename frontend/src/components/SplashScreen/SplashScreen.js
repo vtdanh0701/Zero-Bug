@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logo from '../../assets/img/logo.png'
+
 import './SplashScreen.css'
 
 export default class SplashScreen extends Component {
@@ -7,8 +7,8 @@ export default class SplashScreen extends Component {
         return (
             <div className='splash-screen'>
                 <div className='splash-screen__container animated myAnimation'>
+                    <i className='ion ion-bug'></i>
                     <h1>Zero Bug</h1>
-                    <img src={logo}/>
                 </div>
             </div>
         )
