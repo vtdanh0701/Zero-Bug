@@ -36,23 +36,32 @@ export default class Slide extends Component {
                                     <i className="ion ion-clipboard"></i>
                                 </div>
                             </div>
-                            <div className='caption'>
+                      </div>
+                      <div className='caption'>
                               <h5>Quick access wherever you are</h5>
                               <p>Access your project feed, bug even as you are away from your desk.</p>
-                            </div>
-                        </div>
+                      </div>
                       
                     </div>
                     
                     <div className="carousel-item">
                       
                       <div className='logo animated zoomIn fast d-block w-100'>
+                        <div className='platform-container'>
+                          <div className='desktop-container'>
                             <i className="fas fa-desktop"></i>
+                          </div>
+                          <div className='tablet-container'>
                             <i className="fas fa-tablet-alt"></i>
+                          </div>
+                          <div className='mobile-container'>
                             <i className="fas fa-mobile-alt"></i>
-                            <div className='tablet-screen'>
-                              <i className='ion ion-bug'></i>
-                            </div>
+                          </div>
+                          <div className='tablet-screen'>
+                            <i className='ion ion-bug'></i>
+                          </div>
+                        </div>
+                         
                       </div>
                       <div className='caption'>
                         <h5>Support Multiple Platforms</h5>

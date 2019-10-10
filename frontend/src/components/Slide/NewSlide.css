@@ -1,3 +1,4 @@
+
 .no-padding{
     padding: 0;
     margin: 0;
@@ -99,42 +100,54 @@
 /* END SLIDE 2 STYLING */
 
 /* SLIDE 3 STYLING */
-.carousel-item .fa-desktop{
-    left: 40.5%;
-    top: 20px;
-    transform: translate(-50%) perspective( 400px ) rotateY( 40deg );
-    font-size: 120px;
-    color: #ff5722;
+.platform-container{
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    height: 45vh;
+    max-width: 100%;
+    width: 300px;
+    position: relative;
+
 }
-.fa-mobile-alt{
+.carousel-item .desktop-container{
+    left: 37%;
+    top: 4px;
+    transform: translate(-50%) perspective( 200px ) rotateY( 30deg );
+    
+    position: absolute;
+}
+.carousel-item .desktop-container > i{
+    color: #ff5722;
+    font-size: 120px;
+}
+.carousel-item .mobile-container{
     color: #297373;
-    display: block;
     font-size: 45px;
     position: absolute;
-    top: 91px;
-    left: 58%;
+    top: 70px;
+    left: 63%;
 }
- .fa-tablet-alt{
+.carousel-item .tablet-container{
     color: #39393A;
-    display: block;
-    font-size: 80px;
+    font-size: 70px;
     position: absolute;
-    top: 57px;
-    left: 42%;
+    top: 40px;
+    left: 40%;
 }
 .tablet-screen{
     position: absolute;
-    left: 43.5%;
-    top: 64px;
+    left: 42%;
+    top: 62px;
     background: #fff;
     border-radius: 2px;
-    height: 53px;
-    width: 55px;
+    height: 47px;
+    width: 48px;
 }
 .tablet-screen > .ion-bug{
     left: 52%;
-    font-size: 50px;
-    top: 0;
+    font-size: 40px;
+    top: 2px;
 }
 
 /* END SLIDE 3 STYLING */
