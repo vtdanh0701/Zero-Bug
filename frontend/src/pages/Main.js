@@ -5,7 +5,7 @@ import Sidebar from '../components/Main/Sidebar/Sidebar'
 import Navbar from '../components/Main/Navbar/Navbar'
 import Dashboard from '../components/Main/Dashboard/Dashboard'
 import MainFooter from '../components/Main/Footer/MainFooter'
-import Project from '../components/Main/Project/Project'
+
 
 class MainPage extends Component {
     constructor(props){

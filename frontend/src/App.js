@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import './App.css';
-import './Animate.css'
+import './Animate.css';
 
 
 import LandingPage from './pages/LandingPage';
-import MainPage from './pages/Main'
+import MainPage from './pages/Main';
 import BookingsPage from './pages/Bookings';
 import ProjectsPage from './pages/Projects';
 
 import AuthContext from './context/auth-context';
 
-import Dashboard from './components/Main/Dashboard/Dashboard'
-import Project from './components/Main/Project/Project'
-import Bug from './components/Main/Bug/Bug'
-import User from './components/Main/User/User'
+import Dashboard from './components/Main/Dashboard/Dashboard';
+import Project from './pages/Project/Project';
+import ProjectCreate from './pages/Project/ProjectCreate';
+import ProjectEdit from './pages/Project/ProjectEdit';
+import Bug from './pages/Bug/Bug'
+import User from './pages/User/User'
 import Sidebar from './components/Main/Sidebar/Sidebar';
 import Navbar from './components/Main/Navbar/Navbar';
 import SplashScreen from './components/SplashScreen/SplashScreen'
@@ -80,7 +82,7 @@ class App extends Component {
 
             { this.state.token && <Route path='/' exact render={(props)=> 
               <div className='wrapper'>
-                <Dashboard/> 
+                <Dashboard userId={this.state.userId}/> 
               </div>
               } />}
 
@@ -92,7 +94,9 @@ class App extends Component {
         </AuthContext.Provider>
         {this.state.token && 
               <>            
-              <Route path='/project' component={Project}/>
+              <Route path='/project' exact render={(props) => <Project {...props} userId={this.state.userId}/>}/>
+              <Route path='/project/create' exact render={() =><ProjectCreate {...this.props} token={this.state.token}/>}/>
+              <Route path='/project/edit' exact component={ProjectEdit}/>
               <Route path='/bug'  component={Bug}/>
               <Route path='/user' component={User}/>
               

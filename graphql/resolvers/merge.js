@@ -54,12 +54,13 @@ const singleProject = async projectId => {
 }
 
 const transformProject = project => { 
+    console.log(project)
     return { 
         ...project._doc,
         _id: project.id,
         startDate: dateToString(project._doc.startDate),
         endDate: dateToString(project._doc.endDate),
-        creator: user.bind(this, project._doc.creator)
+        creator: user.bind(this, project.creator)
     }
 };
 

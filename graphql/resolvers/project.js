@@ -19,18 +19,16 @@ module.exports = {
     },
     createProject: async (args, req) => {
 
-        // if( !req.isAuth){
-        //     throw new Error("Unauthenticated!!")
-        // }
-        
-        const userId = "5d98acf5663b8b41d2be90b8"
+        if( !req.isAuth){
+            throw new Error("Unauthenticated!!")
+        }
         
         const project = new Project({
             name: args.projectInput.name,
             description: args.projectInput.description,
             startDate: new Date(args.projectInput.startDate),
             endDate: new Date(args.projectInput.endDate),
-            creator: userId
+            creator: req.userId
         });
         
         let createdProject;
@@ -38,7 +36,7 @@ module.exports = {
         const result = await project
             .save()
                 createdProject = transformProject(result)
-            const creator = await User.findById(userId)
+            const creator = await User.findById(req.userId)
                 if (!creator){
                     throw new Error('User not found.')
                 }
@@ -51,20 +49,7 @@ module.exports = {
         } 
     },
     deleteProject: async (args, req) => {
-        // if( !req.isAuth){
-        //     throw new Error("Unauthenticated!!")
-        // }
-        // try {
-        //     const project = await Project.findById(args.projectId).populate('user');
-        //     const creator = user(project.creator);
-        //     console.log(creator)
-        //     await Project.deleteOne( {_id: args.projectId});
-        //     creator.save() 
-        //     return creator;
-        // }
-        // catch(err){
-        //     throw err
-        // }
+       
         Project.findByIdAndDelete(args.projectId, function(err, project){
             User.findById(project.creator, function(err, user){
                 user.createdProjects.pull(project)
