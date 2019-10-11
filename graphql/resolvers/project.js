@@ -19,7 +19,7 @@ module.exports = {
     },
     createProject: async (args, req) => {
 
-        if( !req.isAuth){
+        if(!req.isAuth){
             throw new Error("Unauthenticated!!")
         }
         
@@ -33,16 +33,16 @@ module.exports = {
         
         let createdProject;
         try {
-        const result = await project
-            .save()
-                createdProject = transformProject(result)
+            const result = await project.save()
+            createdProject = transformProject(result)
             const creator = await User.findById(req.userId)
-                if (!creator){
-                    throw new Error('User not found.')
-                }
-                creator.createdProjects.push(project);
-                await creator.save();
-                return createdProject;
+            console.log(req.userId)
+            if (!creator){
+                throw new Error('User not found.')
+            }
+            creator.createdProjects.push(project);
+            await creator.save();
+            return createdProject;
         }
         catch(err){
                 throw err

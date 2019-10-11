@@ -91,17 +91,18 @@ class App extends Component {
           </Switch>
            
           
-        </AuthContext.Provider>
+        
         {this.state.token && 
               <>            
               <Route path='/project' exact render={(props) => <Project {...props} userId={this.state.userId}/>}/>
-              <Route path='/project/create' exact render={() =><ProjectCreate {...this.props} token={this.state.token}/>}/>
+              <Route path='/project/create' exact render={(props) =><ProjectCreate {...props} token={this.state.token} userId={this.state.userId}/> }/>
               <Route path='/project/edit' exact component={ProjectEdit}/>
               <Route path='/bug'  component={Bug}/>
               <Route path='/user' component={User}/>
               
               </>
             }
+            </AuthContext.Provider>
         </React.Fragment>
        
        

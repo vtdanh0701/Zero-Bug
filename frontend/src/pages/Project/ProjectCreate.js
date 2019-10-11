@@ -26,9 +26,6 @@ export default class ProjectCreate extends Component {
             return;
         }
 
-     
-
-
         const requestBody = {
             query: `
                 mutation {
@@ -45,6 +42,7 @@ export default class ProjectCreate extends Component {
 
         
         const token = this.context.token;
+        console.log(token)
 
         fetch('http://localhost:8000/graphql',{
             method: 'POST',
@@ -55,7 +53,7 @@ export default class ProjectCreate extends Component {
             }
         }).then(res => {
             console.log('Created')
-            return <Redirect to='/project' exact/>
+            this.props.history.push('/project')
         })
         .catch(err => {
             console.log(err);
@@ -65,7 +63,7 @@ export default class ProjectCreate extends Component {
         return (
             <div className='content-wrapper'>
                 <section className='content-header'>
-                    <h1>Create Project</h1>
+                    <h1>Create Project {this.props.userId}</h1>
                 </section>
                 <div className='card card-primary'>
                     
