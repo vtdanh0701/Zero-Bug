@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import './Project.css'
+import './Project.css';
+import {Link} from 'react-router-dom';
+import AuthContext from '../../context/auth-context';
+
 
 export default class Project extends Component {
     constructor(props){
@@ -8,6 +11,7 @@ export default class Project extends Component {
             projects: []
         }
     }
+    static contextType = AuthContext;
 
     componentDidMount(){
         this.fetchProjects();
@@ -54,10 +58,51 @@ export default class Project extends Component {
             console.log(err);
         })
     } 
+
+    deleteProject(projectId){
+        const requestBody = {
+            query: `
+                mutation{
+                    deleteProject($id: ID!) {
+                        name
+                    }
+                    `,
+            variables: {
+              id: projectId
+            }
+          };
+        const token = this.context.token;
+        fetch('http://localhost:8000/graphql', {
+            method: 'POST',
+            body: JSON.stringify(requestBody),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(res => {
+          if (res.status !== 200 && res.status !== 201) {
+            throw new Error('Failed!');
+          }
+          return res.json();
+        })
+        .then(resData => {
+          this.setState(prevState => {
+            const updatedProjects = prevState.projects.filter(project => {
+              return project._id !== projectId;
+            });
+            return { projects: updatedProjects };
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
     render() {
         const projectList = this.state.projects.map((project,i) => {
+            var url = `project/${project._id}/edit`
             return (
-                <tr key={project.id}>
+                <tr key={project._id}>
                                     <td>
                                         {i+1}
                                     </td>
@@ -99,17 +144,17 @@ export default class Project extends Component {
                                         <span className="badge badge-success">Success</span>
                                     </td>
                                     <td className="project-actions text-right">
-                                        <a className="btn btn-primary btn-sm" href="#">
+                                        <Link to={url} className="btn btn-primary btn-sm" >
                                             <i className="fas fa-folder">
                                             </i>
                                             View
-                                        </a>
-                                        <a className="btn btn-info btn-sm" href="#">
+                                        </Link>
+                                        <Link to={url} className="btn btn-info btn-sm">
                                             <i className="fas fa-pencil-alt">
                                             </i>
                                             Edit
-                                        </a>
-                                        <a className="btn btn-danger btn-sm" href="#">
+                                        </Link>
+                                        <a className="btn btn-danger btn-sm" href="#" onClick={this.deleteProject(project._id)}>
                                             <i className="fas fa-trash">
                                             </i>
                                             Delete

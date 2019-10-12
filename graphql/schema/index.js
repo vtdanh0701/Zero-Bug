@@ -68,13 +68,14 @@ input UserInput {
 type RootQuery {
     users: [User!]!
     projects: [Project!]!
+    singleProject(projectId: ID!): Project!
     bugs: [Bug!]!
     login(email: String!, password: String!): AuthData!
 }
 
 type RootMutation{
     createProject(projectInput: ProjectInput): Project
-    deleteProject(projectId: ID!): User
+    deleteProject(projectId: ID!): [Project]
     editProject(projectId: ID!, projectInput: ProjectInput): Project
     createBug(projectId: ID!, bugInput: BugInput): Bug!
     deleteBug(bugId: ID!): Bug

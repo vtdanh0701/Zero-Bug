@@ -79,4 +79,4 @@ exports.transformBug = transformBug;
 exports.transformProject = transformProject;
 exports.user = user;
 // exports.events = events;
-// exports.singleEvent = singleEvent;
+exports.singleProject = singleProject;

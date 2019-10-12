@@ -17,6 +17,15 @@ module.exports = {
             throw err
         }
     },
+    singleProject: async (args, res) => {
+        try {
+            const project = await Project.findOne({_id : args.projectId});
+            return transformProject(project)
+        }
+        catch(err){
+            throw err
+        }
+    },
     createProject: async (args, req) => {
 
         if(!req.isAuth){
