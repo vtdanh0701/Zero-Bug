@@ -59,19 +59,20 @@ export default class Project extends Component {
         })
     } 
 
-    deleteProject(projectId){
+    deleteProject = projectId =>{
+
+        console.log("delete ID: " + projectId)
         const requestBody = {
             query: `
                 mutation{
-                    deleteProject($id: ID!) {
+                    deleteProject(projectId: "${projectId}") {
                         name
                     }
-                    `,
-            variables: {
-              id: projectId
-            }
+                }
+                 `
           };
         const token = this.context.token;
+        console.log("token : " + token)
         fetch('http://localhost:8000/graphql', {
             method: 'POST',
             body: JSON.stringify(requestBody),
@@ -154,7 +155,7 @@ export default class Project extends Component {
                                             </i>
                                             Edit
                                         </Link>
-                                        <a className="btn btn-danger btn-sm" href="#" onClick={this.deleteProject(project._id)}>
+                                        <a className="btn btn-danger btn-sm" value={project._id} onClick={this.deleteProject.bind(this, project._id)}>
                                             <i className="fas fa-trash">
                                             </i>
                                             Delete
