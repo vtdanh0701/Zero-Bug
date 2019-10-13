@@ -70,6 +70,7 @@ const transformBug = bug => {
         ...bug._doc, 
         _id: bug.id, 
         creator: user.bind(this, bug.creator),
+        assginee: user.bind(this, bug.assignee),
         project: singleProject.bind(this, bug._doc.project),
         createdAt: dateToString(bug._doc.createdAt),
         updatedAt: dateToString(bug._doc.updatedAt),

@@ -37,6 +37,12 @@ const userSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Bug'
         }
+    ],
+    assignedBugs: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Bug'
+        }
     ]
 });
 

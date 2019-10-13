@@ -7,10 +7,6 @@ const bugSchema = new Schema({
         type: String,
         required: true
     },
-    prio: {
-        type: Number,
-
-    },
     description: { 
         type: String,
 
@@ -18,6 +14,12 @@ const bugSchema = new Schema({
     dueDate: { 
         type: Date,
 
+    },
+    status:{
+        type: String
+    },
+    level:{
+        type: String
     },
     creator: {
         type: Schema.Types.ObjectId,

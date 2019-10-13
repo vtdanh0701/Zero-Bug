@@ -21,14 +21,20 @@ module.exports = {
         }
     }, 
     createBug: async (args, req) => {
-        // if( !req.isAuth){
-        //     throw new Error("Unauthenticated!!")
-        // }
+        if( !req.isAuth){
+            throw new Error("Unauthenticated!!")
+        }
         const fetchedProject = await Project.findOne({_id: args.projectId});
+        const fetchedAssignee = await User.findOne({_id: args.assigneeId})
         const bug = new Bug({
-            creator: '5d7a8c8f5208dc3626545784',
+            creator: req.userId,
             project: fetchedProject,
-            name: args.bugInput.name
+            assignee: fetchedAssignee,
+            name: args.bugInput.name,
+            description: args.bugInput.description,
+            dueDate: new Date(args.bugInput.dueDate),
+            status: args.bugInput.status,
+            level: args.bugInput.level
         });
         // const result = await bug.save();
         // return transformBug(result);
@@ -38,23 +44,27 @@ module.exports = {
         const result = await bug
             .save()
                 createdBug = transformBug(result)
-            const creator = await User.findById("5d7a8c8f5208dc3626545784")
-                if (!creator){
+            const creator = await User.findById(req.userId)
+            const assignee = await User.findById(args.assigneeId)
+                if (!creator || !assignee){
                     throw new Error('User not found.')
                 }
                 creator.createdBugs.push(bug);
+                assignee.assignedBugs.push(bug)
                 await creator.save();
+                await assignee.save();
                 return createdBug;
         }
         catch(err){
                 throw err
-        } 
+        }
+
     },
     
     deleteBug: async (args, req) => {
-        // if( !req.isAuth){
-        //     throw new Error("Unauthenticated!!")
-        // }
+        if( !req.isAuth){
+            throw new Error("Unauthenticated!!")
+        }
         try {
             const bug = await Bug.findById(args.bugId).populate('project');
             const project = transformProject(bug.project);

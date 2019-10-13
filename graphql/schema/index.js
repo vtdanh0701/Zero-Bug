@@ -15,9 +15,10 @@ type Project {
 type Bug {
     _id: ID!
     name: String! 
-    prio: Int
     description: String
     dueDate: String
+    status: String
+    level: String
     creator: User
     assignee: User
     project: Project
@@ -46,14 +47,14 @@ input ProjectInput {
     startDate: String
     endDate: String
     description: String!
-
 }
 
 input BugInput{
     name: String! 
-    prio: Int
     description: String
     dueDate: String
+    status: String
+    level: String
 }
 
 input UserInput {
@@ -77,7 +78,7 @@ type RootMutation{
     createProject(projectInput: ProjectInput): Project
     deleteProject(projectId: ID!): [Project]
     editProject(projectId: ID!, projectInput: ProjectInput): Project
-    createBug(projectId: ID!, bugInput: BugInput): Bug!
+    createBug(projectId: ID!,assigneeId: ID, bugInput: BugInput): Bug!
     deleteBug(bugId: ID!): Bug
     createUser(userInput: UserInput): User
 }
