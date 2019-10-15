@@ -35,9 +35,7 @@ export default class Bug extends Component {
                     }   
                 }
            `
-        };
-
-
+        };  
 
         fetch('http://localhost:8000/graphql',{
             method: 'POST',
@@ -59,6 +57,46 @@ export default class Bug extends Component {
             console.log(err);
         })
     } 
+    deleteBug = bugId =>{
+
+        console.log("delete ID: " + bugId)
+        const requestBody = {
+            query: `
+                mutation{
+                    deleteBug(bugId: "${bugId}") {
+                        name
+                    }
+                }
+                 `
+          };
+        const token = this.context.token;
+        console.log("token : " + token)
+        fetch('http://localhost:8000/graphql', {
+            method: 'POST',
+            body: JSON.stringify(requestBody),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token
+            }
+        })
+        .then(res => {
+          if (res.status !== 200 && res.status !== 201) {
+            throw new Error('Failed!');
+          }
+          return res.json();
+        })
+        .then(resData => {
+          this.setState(prevState => {
+            const updatedBugs = prevState.bugs.filter(bug => {
+              return bug._id !== bugId;
+            });
+            return { bugs: updatedBugs };
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }  
 
 
     render() {
@@ -121,7 +159,8 @@ export default class Bug extends Component {
                                             </i>
                                             Edit
                                         </Link>
-                                        <a className="btn btn-danger btn-sm" value={bug._id} >
+                                        <a className="btn btn-danger btn-sm" value={bug._id}
+                                        onClick={this.deleteBug.bind(this, bug._id)} >
                                             <i className="fas fa-trash">
                                             </i>
                                             Delete

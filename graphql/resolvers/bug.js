@@ -74,33 +74,24 @@ module.exports = {
         if( !req.isAuth){
             throw new Error("Unauthenticated!!")
         }
-        try {
-            const bug = await Bug.findById(args.bugId).populate('project');
-            const project = transformProject(bug.project);
-            await Bug.deleteOne( {_id: args.bugId});
-            return project;
-        }
-        catch(err){
-            throw err
-        }
+        Bug.findByIdAndDelete(args.bugId, function(err, bug){
+            User.findById(bug.creator, function(err, user){
+                user.createdBugs.pull(bug)
+                user.save(function(err, user){
+                    if(err) throw err;
+                    return user
+                })
+            })
+            User.findById(bug.assignee, function(err, user){
+                user.assignedBugs.pull(bug)
+                user.save(function(err, user){
+                    if(err) throw err;
+                    return user
+                })
+            })
+        })
     },
-    // editBug: async (args, req) => {
-    //     Bug.findByIdAndUpdate(args.bugId, 
-    //         {
-    //             $set:
-    //             {
-    //                 name: args.bugInput.name,
-    //                 description: args.bugInput.description,
-    //                 dueDate: args.bugInput.dueDate,
-    //                 project: args.projectId,
-    //                 assignee: args.assigneeId,
-    //                 status: args.bugInput.status,
-    //                 level: args.bugInput.level
-    //             }},{new: true}, function(err, bug){
-    //                 if(err) throw err
-    //                 return bug
-    //             })
-    // },
+
     editBug: async (args, req) => {
         const fetchedAssignee = await User.findById(args.assigneeId)
         Bug.findById(args.bugId, function(err, bug){

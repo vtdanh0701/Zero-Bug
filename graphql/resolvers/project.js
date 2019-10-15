@@ -57,8 +57,7 @@ module.exports = {
                 throw err
         } 
     },
-    deleteProject: async (args, req) => {
-       
+    deleteProject: async (args, req) => {   
         Project.findByIdAndDelete(args.projectId, function(err, project){
             User.findById(project.creator, function(err, user){
                 user.createdProjects.pull(project)
