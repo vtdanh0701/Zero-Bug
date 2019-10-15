@@ -23,7 +23,16 @@ export default class Bug extends Component {
                         name
                         description
                         dueDate
-                    }
+                        level
+                        status
+                        creator{
+                            firstName
+                        }
+                        assignee{
+                            firstName
+                            lastName
+                        }
+                    }   
                 }
            `
         };
@@ -54,7 +63,28 @@ export default class Bug extends Component {
 
     render() {
         const bugList = this.state.bugs.map((bug,i) => {
-            var url = `project/${bug._id}/edit`
+            var url = `bug/${bug._id}/edit`
+            let status = bug.status
+            let level = bug.level
+            if(status === 'Open'){
+                status = <span className="badge badge-success">{bug.status}</span>
+            }
+            if(status === 'Closed'){
+                status = <span className="badge badge-dark">{bug.status}</span>
+            }
+            if(status === 'InProgress'){
+                status = <span className="badge badge-warning">{bug.status}</span>                
+            }
+            
+            if(level === 'Critical'){
+                level = <span className="badge badge-danger">{bug.level}</span>
+            }
+            if(level === 'Major'){
+                level = <span className="badge badge-warning">{bug.level}</span>
+            }
+            if(level === 'Minor'){
+                level = <span className="badge badge-light">{bug.level}</span>                
+            }
             return (
                 <tr key={bug._id}>
                                     <td>
@@ -71,31 +101,14 @@ export default class Bug extends Component {
                                     </td>
                                     <td>
                                         <ul className="list-inline">
-                                            <li className="list-inline-item">
-                                                <img alt="Avatar" className="table-avatar" src="../../dist/img/avatar.png"/>
-                                            </li>
-                                            <li className="list-inline-item">
-                                                <img alt="Avatar" className="table-avatar" src="../../dist/img/avatar2.png"/>
-                                            </li>
-                                            <li className="list-inline-item">
-                                                <img alt="Avatar" className="table-avatar" src="../../dist/img/avatar3.png"/>
-                                            </li>
-                                            <li className="list-inline-item">
-                                                <img alt="Avatar" className="table-avatar" src="../../dist/img/avatar04.png"/>
-                                            </li>
+                                           {bug.assignee.firstName}
                                         </ul>
                                     </td>
                                     <td className="project_progress">
-                                        <div className="progress progress-sm">
-                                            <div className="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="100" style={{width: "57%"}}>
-                                            </div>
-                                        </div>
-                                        <small>
-                                            57% Complete
-                                        </small>
+                                            {level}
                                     </td>
                                     <td className="project-state">
-                                        <span className="badge badge-success">Success</span>
+                                        {status}
                                     </td>
                                     <td className="project-actions text-right">
                                         <Link to={url} className="btn btn-primary btn-sm" >
@@ -149,11 +162,11 @@ export default class Bug extends Component {
                                 <th style={{width: "20%"}}>
                                     Issue Name
                                 </th>
-                                <th style={{width: "30%"}}>
-                                    Team Members
+                                <th style={{width: "20%"}}>
+                                    Assignee
                                 </th>
                                 <th>
-                                    Issue Progress
+                                    Level
                                 </th>
                                 <th style={{width: "8%"}} className="text-center">
                                     Status

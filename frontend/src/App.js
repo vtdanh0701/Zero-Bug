@@ -15,8 +15,9 @@ import Dashboard from './components/Main/Dashboard/Dashboard';
 import Project from './pages/Project/Project';
 import ProjectCreate from './pages/Project/ProjectCreate';
 import ProjectEdit from './pages/Project/ProjectEdit';
-import Bug from './pages/Bug/Bug'
-import BugCreate from './pages/Bug/BugCreate'
+import Bug from './pages/Bug/Bug';
+import BugCreate from './pages/Bug/BugCreate';
+import BugEdit from './pages/Bug/BugEdit'
 import User from './pages/User/User'
 import Sidebar from './components/Main/Sidebar/Sidebar';
 import Navbar from './components/Main/Navbar/Navbar';
@@ -101,6 +102,7 @@ class App extends Component {
               <Route path='/project/:id/edit' exact render={(props) => <ProjectEdit {...props}/>}/>
               <Route path='/issue' exact  component={Bug}/>
               <Route path='/issue/create' exact render={(props) =><BugCreate {...props} token={this.state.token} userId={this.state.userId}/> }/>
+              <Route path='/bug/:id/edit' exact render={(props) => <BugEdit {...props}/>}/>
               <Route path='/user' component={User}/>
               
               </>

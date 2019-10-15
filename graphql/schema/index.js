@@ -34,6 +34,7 @@ type User {
     credential: String
     createdProjects: [Project!]
     createdBugs: [Bug]
+    assignedBugs: [Bug]
 }
 
 type AuthData{
@@ -71,6 +72,7 @@ type RootQuery {
     projects: [Project!]!
     singleProject(projectId: ID!): Project!
     bugs: [Bug!]!
+    singleBug(bugId: ID!): Bug!
     login(email: String!, password: String!): AuthData!
 }
 
@@ -79,6 +81,7 @@ type RootMutation{
     deleteProject(projectId: ID!): [Project]
     editProject(projectId: ID!, projectInput: ProjectInput): Project
     createBug(projectId: ID!,assigneeId: ID, bugInput: BugInput): Bug!
+    editBug(bugId: ID!,assigneeId: ID, bugInput: BugInput): Bug!
     deleteBug(bugId: ID!): Bug
     createUser(userInput: UserInput): User
 }

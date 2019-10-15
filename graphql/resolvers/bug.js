@@ -20,12 +20,21 @@ module.exports = {
             throw err;
         }
     }, 
+    singleBug: async (args, res) => {
+        try {
+            const bug = await Bug.findOne({_id : args.bugId});
+            return transformBug(bug)
+        }
+        catch(err){
+            throw err
+        }
+    },
     createBug: async (args, req) => {
         if( !req.isAuth){
             throw new Error("Unauthenticated!!")
         }
         const fetchedProject = await Project.findOne({_id: args.projectId});
-        const fetchedAssignee = await User.findOne({_id: args.assigneeId})
+        const fetchedAssignee = await User.findById(args.assigneeId)
         const bug = new Bug({
             creator: req.userId,
             project: fetchedProject,
@@ -74,5 +83,54 @@ module.exports = {
         catch(err){
             throw err
         }
+    },
+    // editBug: async (args, req) => {
+    //     Bug.findByIdAndUpdate(args.bugId, 
+    //         {
+    //             $set:
+    //             {
+    //                 name: args.bugInput.name,
+    //                 description: args.bugInput.description,
+    //                 dueDate: args.bugInput.dueDate,
+    //                 project: args.projectId,
+    //                 assignee: args.assigneeId,
+    //                 status: args.bugInput.status,
+    //                 level: args.bugInput.level
+    //             }},{new: true}, function(err, bug){
+    //                 if(err) throw err
+    //                 return bug
+    //             })
+    // },
+    editBug: async (args, req) => {
+        const fetchedAssignee = await User.findById(args.assigneeId)
+        Bug.findById(args.bugId, function(err, bug){
+            if(args.assigneeId !== bug.assignee._id){
+                User.findById((bug.assignee._id), function(err,user){
+                    user.assignedBugs.pull(bug)
+                    user.save(function(err,user){
+                        if(err) throw err
+                        return user 
+                    })
+                })
+                User.findById((args.assigneeId), function(err,user){
+                    user.assignedBugs.push(bug)
+                    user.save(function(err,user){
+                        if(err) throw err
+                        return user 
+                    })
+                })
+            }
+            bug.name = args.bugInput.name;
+            bug.description = args.bugInput.description;
+            bug.dueDate = args.bugInput.dueDate;
+            bug.assignee = fetchedAssignee;
+            bug.status = args.bugInput.status;
+            bug.level = args.bugInput.level
+            bug.save((err, bug) => {
+                if(err) throw err
+                return bug
+            })
+        })
     }
+    
 };

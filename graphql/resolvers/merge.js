@@ -1,4 +1,5 @@
 const Project = require('../../models/project');
+const Bug = require('../../models/bug');
 const User = require('../../models/user');
 const { dateToString } = require('../../helpers/date');
 
@@ -11,7 +12,8 @@ const user = async userId => {
             return {...user._doc, 
                     _id: user.id, 
                     createdProjects: projects.bind(this, user.createdProjects),
-                    createdBugs: bugs.bind(this, user.createdBugs)
+                    createdBugs: bugs.bind(this, user.createdBugs),
+                    assignedBugs: bugs.bind(this, user.assignedBugs)
                 }
     }
     catch(err) {
@@ -54,7 +56,6 @@ const singleProject = async projectId => {
 }
 
 const transformProject = project => { 
-    console.log(project)
     return { 
         ...project._doc,
         _id: project.id,
@@ -65,12 +66,13 @@ const transformProject = project => {
 };
 
 const transformBug = bug => {
-    console.log(bug.creator)
+    console.log("bug assignee " + bug.assignee)
     return {
         ...bug._doc, 
         _id: bug.id, 
+        assignee: user.bind(this, bug.assignee),
         creator: user.bind(this, bug.creator),
-        assginee: user.bind(this, bug.assignee),
+        dueDate: dateToString(bug._doc.dueDate),
         project: singleProject.bind(this, bug._doc.project),
         createdAt: dateToString(bug._doc.createdAt),
         updatedAt: dateToString(bug._doc.updatedAt),

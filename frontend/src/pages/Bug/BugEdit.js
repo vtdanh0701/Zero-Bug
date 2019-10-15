@@ -4,16 +4,18 @@ import AuthContext from '../../context/auth-context';
 import Select from 'react-select';
 
 
-export default class BugCreate extends Component {
+export default class BugEdit extends Component {
     constructor(props){
         super(props);
         this.state={
             selectedUser: null,
-            selectedProject: null,
             selectedStatus: null,
             selectedLevel: null,
-            projects: [],
             users: [],
+            bug: {},
+            dueDate: '',
+            description: '',
+            project: '',
         }
         this.nameElRef = React.createRef();
         this.descriptionElRef = React.createRef();
@@ -22,10 +24,6 @@ export default class BugCreate extends Component {
     }
     static contextType = AuthContext;
 
-    handleProjectChange = selectedProject => {
-        this.setState(
-          { selectedProject });
-      };
     handleUserChange = selectedUser => {
       this.setState(
         { selectedUser });
@@ -40,6 +38,11 @@ export default class BugCreate extends Component {
             selectedLevel: e.target.value
         })
     }
+    handleDescriptionChange = e => { 
+        this.setState({
+            description: e.target.value
+        })
+    }
 
 
     componentDidMount(){
@@ -48,18 +51,30 @@ export default class BugCreate extends Component {
     }
 
     fetchData(){
+        const bugId = this.props.match.params.id
         const requestBody = {
             query: `
                 query{
-                    projects{
-                        _id
+                   singleBug(bugId: "${bugId}"){
                         name
-                    }
-                    users{
-                        _id
-                        firstName
-                        lastName
-                    }
+                        description
+                        dueDate
+                        status
+                        level
+                        assignee{
+                          firstName
+                          lastName
+                          _id
+                        }
+                        project{
+                          name
+                        }     
+                   }
+                   users{
+                       firstName
+                       lastName
+                       _id
+                   }
                 }
             `
         }
@@ -78,9 +93,21 @@ export default class BugCreate extends Component {
         }).then(resData => {
             const projects = resData.data.projects;
             const users = resData.data.users;
+            const bug = resData.data.singleBug;
+            const project = bug.project.name;
+            const dueDate = bug.dueDate.substring(0,10);
+            const description = bug.description.toString();
+            const selectedUser = { value: bug.assignee._id, label: bug.assignee.firstName }
+
             this.setState({
-                projects,
-                users
+                project,
+                users,
+                bug,
+                dueDate,
+                description,
+                selectedUser: selectedUser,
+                selectedStatus: bug.status,
+                selectedLevel: bug.level,
             })
         }).catch(err => {
             console.log(err);
@@ -90,8 +117,8 @@ export default class BugCreate extends Component {
         const name = this.nameElRef.current.value;
         const description = this.descriptionElRef.current.value;
         const dueDate = this.dueDateElRef.current.value;
-        const projectId = this.state.selectedProject.value;
         const assigneeId = this.state.selectedUser.value;
+        const bugId = this.props.match.params.id
         let status = this.state.selectedStatus;
         let level = this.state.selectedLevel;
 
@@ -113,8 +140,8 @@ export default class BugCreate extends Component {
         const requestBody = {
             query: `
                 mutation {
-                    createBug(
-                        projectId: "${projectId}",
+                    editBug(
+                        bugId: "${bugId}",
                         assigneeId: "${assigneeId}"
                         bugInput:{name:"${name}", 
                                     description: "${description}",
@@ -130,7 +157,6 @@ export default class BugCreate extends Component {
 
         
         const token = this.context.token;
-        console.log(token)
 
         fetch('http://localhost:8000/graphql',{
             method: 'POST',
@@ -148,22 +174,20 @@ export default class BugCreate extends Component {
         })
     }
     render() {
-        const projectListOptions = [];
-        this.state.projects.map((project,i) => {
-            projectListOptions.push({ value: project._id, label: project.name })
-        })
+
         const userListOptions = [];
         this.state.users.map((user) => {
             userListOptions.push({value: user._id,label: user.firstName})
         })
         
-        const { selectedProject } = this.state
         const { selectedUser } = this.state
+        const bug = this.state.bug
 
         return (
             <div className='content-wrapper'>
                 <section className='content-header'>
-                    <h1>Create Issue</h1>
+                    <h1>Edit Issue</h1>
+                    
                 </section>
                 <div className='card card-primary'>
                     
@@ -171,28 +195,32 @@ export default class BugCreate extends Component {
                     <div className='card-body' >
                         <div className='form-group'>
                             <label htmlFor='inputName'>Name</label>
-                            <input className='form-control' id='inputName' type='text' ref={this.nameElRef}></input>
+                            <input defaultValue={bug.name} className='form-control' id='inputName' type='text' ref={this.nameElRef}></input>
                         </div>
                         <div className='form-group'>
                             <label htmlFor='inputDescription'>Description</label>
-                            <textarea className='form-control' id='inputDescription' type='text' ref={this.descriptionElRef}/>
+                            <textarea
+                            type='text'
+                            value={this.state.description} 
+                            className='form-control' 
+                            id='inputDescription' 
+                            ref={this.descriptionElRef} 
+                            onChange={this.handleDescriptionChange.bind(this)}/>
                         </div>
                         <div className='form-group'>
                             <label htmlFor='inputProject'>Project</label>
-                            <Select
-                            value={selectedProject}
-                            onChange={this.handleProjectChange}
-                            options={projectListOptions}/>
+                            <input className='form-control'
+                            value={this.state.project} disabled/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor='startDate'>Due Date</label>
+                            <label htmlFor='dueDate'>Due Date</label>
                             <div className="input-group">
                                 <div className="input-group-prepend">
                                   <span className="input-group-text">
                                       <i className="far fa-calendar-alt"></i>
                                   </span>
                                 </div>
-                                <input type="date" className="form-control" ref={this.dueDateElRef}></input> 
+                                <input defaultValue={this.state.dueDate} type="date" className="form-control" ref={this.dueDateElRef}></input> 
                             </div>
                         </div>
                         <div className='form-group'>
@@ -204,7 +232,7 @@ export default class BugCreate extends Component {
                         </div>
                         <div className='form-group'>
                             <label htmlFor='inputProject'>Status</label>
-                            <select onChange={this.handleStatusChange} className="form-control select2bs4" style={{width: "100%"}}>
+                            <select value={this.state.selectedStatus} onChange={this.handleStatusChange} className="form-control select2bs4" style={{width: "100%"}}>
                                 <option value='Open'>Open</option>
                                 <option value='Closed'>Closed</option>
                                 <option value='InProgress'>InProgress</option>
@@ -212,7 +240,7 @@ export default class BugCreate extends Component {
                         </div>
                         <div className='form-group'>
                             <label htmlFor='inputProject'>Level</label>
-                            <select onChange={this.handleLevelChange} className="form-control select2bs4" style={{width: "100%"}}>
+                            <select value={this.state.selectedLevel} onChange={this.handleLevelChange} className="form-control select2bs4" style={{width: "100%"}}>
                                 <option value='None'>None</option>
                                 <option value='Critical'>Critical</option>
                                 <option value='Major'>Major</option>
@@ -220,7 +248,7 @@ export default class BugCreate extends Component {
                             </select>
                         </div>
                         <a href='#' className='btn btn-info'>Cancel</a>
-                        <input type="submit" value="Create new Issue" className="btn btn-success float-right" onClick={this.modalConfirmHandler}></input>
+                        <input type="submit" value="Save" className="btn btn-success float-right" onClick={this.modalConfirmHandler}></input>
                     </div>
                     
                 </div>
