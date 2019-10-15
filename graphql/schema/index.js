@@ -84,6 +84,7 @@ type RootMutation{
     editBug(bugId: ID!,assigneeId: ID, bugInput: BugInput): Bug!
     deleteBug(bugId: ID!): Bug
     createUser(userInput: UserInput): User
+    deleteUser(userId: ID!): User
 }
 
 schema {

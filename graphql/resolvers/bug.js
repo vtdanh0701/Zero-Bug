@@ -95,13 +95,19 @@ module.exports = {
     editBug: async (args, req) => {
         const fetchedAssignee = await User.findById(args.assigneeId)
         Bug.findById(args.bugId, function(err, bug){
+            console.log(bug.assignee)
             if(args.assigneeId !== bug.assignee._id){
                 User.findById((bug.assignee._id), function(err,user){
-                    user.assignedBugs.pull(bug)
-                    user.save(function(err,user){
-                        if(err) throw err
-                        return user 
-                    })
+                    if(!user){
+                        return bug
+                    } else{
+                        user.assignedBugs.pull(bug)
+                        user.save(function(err,user){
+                            if(err) throw err
+                            return user 
+                        })
+                    }
+                    
                 })
                 User.findById((args.assigneeId), function(err,user){
                     user.assignedBugs.push(bug)

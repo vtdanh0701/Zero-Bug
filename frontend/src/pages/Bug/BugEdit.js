@@ -97,7 +97,12 @@ export default class BugEdit extends Component {
             const project = bug.project.name;
             const dueDate = bug.dueDate.substring(0,10);
             const description = bug.description.toString();
-            const selectedUser = { value: bug.assignee._id, label: bug.assignee.firstName }
+            let selectedUser;
+            if(!bug.assignee){
+                selectedUser = null
+            } else {
+                selectedUser = { value: bug.assignee._id, label: bug.assignee.firstName }
+            }
 
             this.setState({
                 project,

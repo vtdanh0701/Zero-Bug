@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './Project.css';
 import {Link} from 'react-router-dom';
 import AuthContext from '../../context/auth-context';
 
@@ -60,8 +59,6 @@ export default class Project extends Component {
     } 
 
     deleteProject = projectId =>{
-
-        console.log("delete ID: " + projectId)
         const requestBody = {
             query: `
                 mutation{
@@ -72,7 +69,7 @@ export default class Project extends Component {
                  `
           };
         const token = this.context.token;
-        console.log("token : " + token)
+
         fetch('http://localhost:8000/graphql', {
             method: 'POST',
             body: JSON.stringify(requestBody),

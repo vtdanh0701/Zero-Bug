@@ -139,7 +139,7 @@ export default class Bug extends Component {
                                     </td>
                                     <td>
                                         <ul className="list-inline">
-                                           {bug.assignee.firstName}
+                                           {bug.assignee? bug.assignee.firstName: "None"}
                                         </ul>
                                     </td>
                                     <td className="project_progress">

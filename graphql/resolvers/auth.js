@@ -21,7 +21,6 @@ module.exports = {
                 lastName: args.userInput.lastName,
                 address: args.userInput.address,
                 credential: args.userInput.credential,
-
                 });
 
             const result = await user.save();

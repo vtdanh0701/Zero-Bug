@@ -103,7 +103,7 @@ class App extends Component {
               <Route path='/issue' exact  component={Bug}/>
               <Route path='/issue/create' exact render={(props) =><BugCreate {...props} token={this.state.token} userId={this.state.userId}/> }/>
               <Route path='/bug/:id/edit' exact render={(props) => <BugEdit {...props}/>}/>
-              <Route path='/user' component={User}/>
+              <Route path='/user' exact render={(props) => <User {...props}/>}/>
               
               </>
             }
