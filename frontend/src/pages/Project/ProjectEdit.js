@@ -12,6 +12,7 @@ export default class ProjectEdit extends Component {
             project: {},
             startDate: '',
             endDate: '',
+            description: ''
         }
         this.nameElRef = React.createRef();
         this.descriptionElRef = React.createRef();
@@ -27,6 +28,11 @@ export default class ProjectEdit extends Component {
     handleNameChange(e){
         this.setState({
             project:{name: e.target.value}
+        })
+    }
+    handleDescriptionChange = e => { 
+        this.setState({
+            description: e.target.value
         })
     }
     fetchSingleProject(){
@@ -60,11 +66,13 @@ export default class ProjectEdit extends Component {
             const project = resData.data.singleProject;
             const startDate = resData.data.singleProject.startDate.substring(0,10);
             const endDate = resData.data.singleProject.endDate.substring(0,10)
+            const description = project.description
 
             this.setState({
                 project: project,
                 startDate,
-                endDate
+                endDate,
+                description
             })
         }).catch(err => {
             console.log(err);
@@ -115,7 +123,7 @@ export default class ProjectEdit extends Component {
                 'Authorization': 'Bearer ' + token
             }
         }).then(res => {
-          this.fetchSingleProject()
+            this.props.history.push('/project')
         })
         .catch(err => {
             console.log(err);
@@ -138,7 +146,13 @@ export default class ProjectEdit extends Component {
                         </div>
                         <div className='form-group'>
                             <label htmlFor='inputDescription'>Project Description</label>
-                            <textarea className='form-control' id='inputDescription' type='text' ref={this.descriptionElRef} value={this.state.project.description}/>
+                            <textarea 
+                            className='form-control' 
+                            id='inputDescription' 
+                            type='text' 
+                            ref={this.descriptionElRef} 
+                            onChange={this.handleDescriptionChange}
+                            value={this.state.description}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor='startDate'>Start Date</label>
@@ -163,7 +177,7 @@ export default class ProjectEdit extends Component {
                             </div>
                         </div>
                         <a href='#' className='btn btn-info'>Cancel</a>
-                        <input type="submit" value="Create new Project" className="btn btn-success float-right" onClick={this.modalConfirmHandler}></input>
+                        <input type="submit" value="Save" className="btn btn-success float-right" onClick={this.modalConfirmHandler}></input>
                     </div>
                     
                 </div>
