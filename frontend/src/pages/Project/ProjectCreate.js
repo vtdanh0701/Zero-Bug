@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom';
 import AuthContext from '../../context/auth-context';
 
 export default class ProjectCreate extends Component {
