@@ -66,9 +66,17 @@ input UserInput {
     address: String
     credential: String
 }
+input EditUserInput{
+    email: String
+    firstName: String
+    lastName: String
+    address: String
+    credential: String
+}
 
 type RootQuery {
     users: [User!]!
+    singleUser(userId: ID!): User!
     projects: [Project!]!
     singleProject(projectId: ID!): Project!
     bugs: [Bug!]!
@@ -85,6 +93,7 @@ type RootMutation{
     deleteBug(bugId: ID!): Bug
     createUser(userInput: UserInput): User
     deleteUser(userId: ID!): User
+    editUser(userId: ID!, userInput: EditUserInput): User
 }
 
 schema {

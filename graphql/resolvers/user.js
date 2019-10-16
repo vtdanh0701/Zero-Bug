@@ -15,6 +15,30 @@ module.exports = {
             throw err
         }
     },
+    singleUser: async (args, res) => {
+        try {
+            const singleUser = await User.findOne({_id : args.userId});
+            return user(singleUser)
+        }
+        catch(err){
+            throw err
+        }
+    },
+    editUser: async (args, req) => {
+        User.findByIdAndUpdate(args.userId, 
+            {
+                $set:
+                {
+                    firstName: args.userInput.firstName,
+                    lastName: args.userInput.lastName,
+                    email: args.userInput.email,
+                    address: args.userInput.address,
+                    credential: args.userInput.credential
+                }},{new: true}, function(err, user){
+                    if(err) throw err
+                    return user
+                })
+    },
     deleteUser: async (args, req) => {
         if( !req.isAuth){
             throw new Error("Unauthenticated!!")
@@ -38,7 +62,7 @@ module.exports = {
                 })
             }
             
-            Bug.find({'_id': {$in:[bugIds]}}, function(err,bugs){
+            Bug.find({'_id': {$in:[createdBugIds]}}, function(err,bugs){
                 if(bugs.length === 0){
                     return 
                 } else {
@@ -52,7 +76,7 @@ module.exports = {
                 }
                 
             })
-            Bug.find({'_id': {$in:[user.assignedBugs]}}, function(err,bugs){
+            Bug.find({'_id': {$in:[assignedBugIds]}}, function(err,bugs){
                 if(bugs.length === 0){
                     return 
                 } else {

@@ -20,6 +20,7 @@ import BugCreate from './pages/Bug/BugCreate';
 import BugEdit from './pages/Bug/BugEdit'
 import User from './pages/User/User';
 import UserCreate from './pages/User/UserCreate';
+import UserEdit from './pages/User/UserEdit';
 import Sidebar from './components/Main/Sidebar/Sidebar';
 import Navbar from './components/Main/Navbar/Navbar';
 import SplashScreen from './components/SplashScreen/SplashScreen'
@@ -106,6 +107,8 @@ class App extends Component {
               <Route path='/bug/:id/edit' exact render={(props) => <BugEdit {...props}/>}/>
               <Route path='/user' exact render={(props) => <User {...props}/>}/>
               <Route path='/user/create' exact render={(props) => <UserCreate {...props}/>}/>
+              <Route path='/user/:id/edit' exact render={(props) => <UserEdit {...props}/>}/>
+
               
               </>
             }
