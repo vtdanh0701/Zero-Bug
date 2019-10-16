@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Dashboard.css';
 import Charts from './Chart/Charts';
+import {Link} from 'react-router-dom';
 export default class Dashboard extends Component {
     state = {
         projects: [],
@@ -60,7 +61,7 @@ export default class Dashboard extends Component {
                     <div className="container-fluid">
                         <div className="row mb-2">
                         <div className="col-sm-6">
-                            <h1 className="m-0 text-dark">Dashboard {this.props.userId}</h1>
+                            <h1 className="m-0 text-dark">Dashboard</h1>
                         </div>
                         <div className="col-sm-6">
                             <ol className="breadcrumb float-sm-right">
@@ -84,7 +85,7 @@ export default class Dashboard extends Component {
                             <div className="icon">
                                 <i className="ion ion-clipboard"></i>
                             </div>
-                            <a  className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
+                            <Link to='/project'  className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></Link>
                             </div>
                         </div>
                         <div className="col-lg-3 col-6">
