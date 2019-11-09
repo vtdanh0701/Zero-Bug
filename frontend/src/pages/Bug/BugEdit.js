@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import AuthContext from '../../context/auth-context';
 import Select from 'react-select';
 
@@ -190,9 +190,21 @@ export default class BugEdit extends Component {
 
         return (
             <div className='content-wrapper'>
-                <section className='content-header'>
-                    <h1>Edit Issue</h1>
-                    
+               <section className="content-header">
+                    <div className="container-fluid">
+                        <div className="row mb-2">
+                        <div className="col-sm-6">
+                            <h1>Edit Issue</h1>
+                        </div>
+                        <div className="col-sm-6">
+                            <ol className="breadcrumb float-sm-right">
+                            <li className="breadcrumb-item"><Link to='/'>Home</Link></li>
+                            <li className="breadcrumb-item"><Link to='/issue'>Issue</Link></li>
+                            <li className="breadcrumb-item active">Edit</li>
+                            </ol>
+                        </div>
+                        </div>
+                    </div>
                 </section>
                 <div className='card card-primary'>
                     
@@ -252,7 +264,7 @@ export default class BugEdit extends Component {
                                 <option value='Minor'>Minor</option>
                             </select>
                         </div>
-                        <a href='#' className='btn btn-info'>Cancel</a>
+                        <Link to='/issue' className='btn btn-info'>Cancel</Link>
                         <input type="submit" value="Save" className="btn btn-success float-right" onClick={this.modalConfirmHandler}></input>
                     </div>
                     

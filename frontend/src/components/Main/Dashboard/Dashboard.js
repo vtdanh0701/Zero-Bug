@@ -2,15 +2,23 @@ import React, { Component } from 'react'
 import './Dashboard.css';
 import Charts from './Chart/Charts';
 import {Link} from 'react-router-dom';
+import { array } from 'prop-types';
 export default class Dashboard extends Component {
     state = {
         projects: [],
         users: [],
-        bugs: []
+        bugs: [],
+        months: ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
+        monthNums: [],
+        labels: [],
+        data: [],
+        bugData: [],
+        count: []
     }
     componentDidMount(){
         this.fetchInfo();
     }
+  
     fetchInfo(){
         const requestBody = {
             query: `
@@ -20,9 +28,15 @@ export default class Dashboard extends Component {
                     }
                     projects{
                         _id
+                        startDate
+                        endDate
+                        bug{
+                            _id
+                        }
                     }
                     bugs{
                         _id
+                        dueDate
                     }
                 }
            `
@@ -42,20 +56,72 @@ export default class Dashboard extends Component {
             const users = resData.data.users;
             const projects = resData.data.projects;
             const bugs = resData.data.bugs;
+            const monthNums = this.state.monthNums;
+            const months = this.state.months;
+            const labels = this.state.labels;
+            const bugData = this.state.bugData
+            var count = this.state.count
+            function mycomparator(a,b) {
+                return parseInt(a.startDate.substring(5,7), 10) - parseInt(b.startDate.substring(5,7), 10);
+              }
+
+            projects.sort(mycomparator)
+
+            const getTotal = function(n){
+                let ctn = 0
+                let result = 0
+                console.log(projects)
+                for(var i = 0; i<=n.length-2;i++){
+                    // let ctn = 0;
+                    // console.log(n[i].startDate)
+                    if(n[i].startDate.substring(5,7) === n[i+1].startDate.substring(5,7)){
+                        // console.log(n[i].bug.length + n[i+1].bug.length)
+                        ctn += n[i].bug.length 
+                        console.log(ctn)
+                    } else {
+                        result = ctn + n[i].bug.length
+                        ctn = 0;
+                        console.log("result " +result)
+                    }
+
+                }
+            }
+            getTotal(projects)
+
+            projects.map((project,i) => {
+                if(project.startDate.substring(5,7)[0] === '0'){
+                  monthNums.push(parseInt(project.startDate.substring(6,7)))
+                  return monthNums.sort(function(a,b){return a-b})
+                } else{
+                  monthNums.push(parseInt(project.startDate.substring(5,7)))
+                  return monthNums.sort(function(a,b){return a-b})
+                }
+              })
+            monthNums.map((monthNum) => {
+              labels.push(months[monthNum-1])
+            })
+            var labelArr = Object.values(labels);
+            var counts = {};
+
+            labelArr.forEach(function(x) {
+                counts[x] = (counts[x] || 0) + 1;
+            });
+            var data = Object.values(counts)
+            const newLabels = labels.filter((item,i) => labels.indexOf(item) === i)
             this.setState({
                 users,
                 projects,
-                bugs
+                bugs,
+                labels: newLabels,
+                data
             })
+            
         }).catch(err => {
             throw err
         })
     }
     render() {
         return (
-           
-                
-            
             <div className='content-wrapper'>
                 <div className="content-header">
                     <div className="container-fluid">
@@ -99,7 +165,7 @@ export default class Dashboard extends Component {
                             <div className="icon">
                                 <i className="ion ion-bug"></i>
                             </div>
-                            <a  className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
+                            <Link to='/issue'  className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></Link>
                             </div>
                         </div>
                         <div className="col-lg-3 col-6">
@@ -113,7 +179,7 @@ export default class Dashboard extends Component {
                             <div className="icon">
                                 <i className="fas fa-user"></i>
                             </div>
-                            <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
+                            <Link to='/user' className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></Link>
                             </div>
                         </div>
                         <div className="col-lg-3 col-6">
@@ -132,7 +198,7 @@ export default class Dashboard extends Component {
                         </div>
                     </div>
                     <div className='row'>
-                        <Charts/>
+                        <Charts data={this.state.data} labels={this.state.labels} projects={this.state.projects} bugs={this.state.bugs}/>
                     </div>
                    
                 </section>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import AuthContext from '../../context/auth-context';
 
 
@@ -133,8 +133,21 @@ export default class ProjectEdit extends Component {
 
         return (
             <div className='content-wrapper'>
-                <section className='content-header'>
-                    <h1>Edit Project</h1>
+                <section className="content-header">
+                    <div className="container-fluid">
+                        <div className="row mb-2">
+                        <div className="col-sm-6">
+                            <h1>Edit Project</h1>
+                        </div>
+                        <div className="col-sm-6">
+                            <ol className="breadcrumb float-sm-right">
+                            <li className="breadcrumb-item"><Link to='/'>Home</Link></li>
+                            <li className="breadcrumb-item"><Link to='/project'>Project</Link></li>
+                            <li className="breadcrumb-item active">Edit</li>
+                            </ol>
+                        </div>
+                        </div>
+                    </div>
                 </section>
                 <div className='card card-primary'>
                     
@@ -176,7 +189,7 @@ export default class ProjectEdit extends Component {
                                 <input type="date" className="form-control" ref={this.endDateElRef} value={this.state.endDate}></input> 
                             </div>
                         </div>
-                        <a href='#' className='btn btn-info'>Cancel</a>
+                        <Link to='/project' className='btn btn-info'>Cancel</Link>
                         <input type="submit" value="Save" className="btn btn-success float-right" onClick={this.modalConfirmHandler}></input>
                     </div>
                     

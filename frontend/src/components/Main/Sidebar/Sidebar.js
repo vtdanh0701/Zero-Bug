@@ -37,13 +37,10 @@ export default class Sidebar extends Component {
         return (
           <aside className="main-sidebar sidebar-light-primary elevation-4">
 
-    <a href="#" className="brand-link">
-      <i 
-           alt="AdminLTE Logo"
-           className="brand-image img-circle ion ion-bug "
-           style={{opacity: ".8"}}></i>
+    <NavLink to='/' className="brand-link">
+      <i  alt="Zero Bug Logo" className="ion ion-bug " style={{opacity: ".8"}}></i>
       <span className="brand-text font-weight-light">Zero Bug</span>
-    </a>
+    </NavLink>
 
 
     <div  className="sidebar">
@@ -88,12 +85,7 @@ export default class Sidebar extends Component {
                   <p>Create Project</p>
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to='/project/edit' exact className="nav-link">
-                  <i className="far fa-circle nav-icon"></i>
-                  <p>Edit Project</p>
-                </NavLink>
-              </li>
+
             </ul>
           </li>
           <li className="nav-item">
@@ -119,12 +111,7 @@ export default class Sidebar extends Component {
                   <p>Create Issues</p>
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to='/issue/edit' className="nav-link">
-                  <i className="far fa-circle nav-icon"></i>
-                  <p>Edit Issues</p>
-                </NavLink>
-              </li>
+
             </ul>
           </li>
           
@@ -149,12 +136,6 @@ export default class Sidebar extends Component {
                 <NavLink to='/user/create' className="nav-link">
                   <i className="far fa-circle nav-icon"></i>
                   <p>Create Users</p>
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to='/user/edit' className="nav-link">
-                  <i className="far fa-circle nav-icon"></i>
-                  <p>Edit Users</p>
                 </NavLink>
               </li>
             </ul>

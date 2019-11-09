@@ -70,8 +70,8 @@ class App extends Component {
         {!this.state.token && <Redirect to='/'/>}
         {this.state.token && 
         <div className='wrapper'>
-          <Navbar/>
-          <Route path='/' render={(props) => <Sidebar {...props}/>}/>
+          {/* <Navbar/> */}
+          <Route path='/' render={(props) => <MainPage {...props} userId={this.state.userId} logout={this.logout}/>}/>
         </div>}
         <React.Fragment>
         <AuthContext.Provider 

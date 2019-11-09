@@ -1,3 +1,6 @@
 .navbar{
     height: 57px;
 }
+#navbar__user-name{
+    margin-left: 1em;
+}

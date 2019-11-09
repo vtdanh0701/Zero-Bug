@@ -56,8 +56,10 @@ const singleProject = async projectId => {
 }
 
 const transformProject = project => { 
+    console.log(project.bug)
     return { 
         ...project._doc,
+        bug: bugs.bind(this, project._doc.bug),
         _id: project.id,
         startDate: dateToString(project._doc.startDate),
         endDate: dateToString(project._doc.endDate),
@@ -66,7 +68,6 @@ const transformProject = project => {
 };
 
 const transformBug = bug => {
-    console.log("bug assignee " + bug.assignee)
     return {
         ...bug._doc, 
         _id: bug.id, 

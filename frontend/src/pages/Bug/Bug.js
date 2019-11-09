@@ -171,21 +171,21 @@ export default class Bug extends Component {
         })
         return (
             <div className='content-wrapper'>
-            <section className="content-header">
-                <div className="container-fluid">
-                    <div className="row mb-2">
-                    <div className="col-sm-6">
-                        <h1>Issues </h1>
+           <section className="content-header">
+                    <div className="container-fluid">
+                        <div className="row mb-2">
+                        <div className="col-sm-6">
+                            <h1>Issue</h1>
+                        </div>
+                        <div className="col-sm-6">
+                            <ol className="breadcrumb float-sm-right">
+                            <li className="breadcrumb-item"><Link to='/'>Home</Link></li>
+                            <li className="breadcrumb-item active">Issue</li>
+                            </ol>
+                        </div>
+                        </div>
                     </div>
-                    <div className="col-sm-6">
-                        <ol className="breadcrumb float-sm-right">
-                        <li className="breadcrumb-item"><a href="#">Home</a></li>
-                        <li className="breadcrumb-item active">Issues</li>
-                        </ol>
-                    </div>
-                    </div>
-                </div>
-            </section>
+                </section>
 
             <section className='content'>
                 <div className='card'>

@@ -53,15 +53,18 @@ module.exports = {
         const result = await bug
             .save()
                 createdBug = transformBug(result)
+            const project = await Project.findById(args.projectId)
             const creator = await User.findById(req.userId)
             const assignee = await User.findById(args.assigneeId)
                 if (!creator || !assignee){
                     throw new Error('User not found.')
                 }
+                project.bug.push(bug);
                 creator.createdBugs.push(bug);
                 assignee.assignedBugs.push(bug)
                 await creator.save();
                 await assignee.save();
+                await project.save();
                 return createdBug;
         }
         catch(err){

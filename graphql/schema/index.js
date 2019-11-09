@@ -22,6 +22,7 @@ type Bug {
     creator: User
     assignee: User
     project: Project
+    createdAt: String
 }
 
 type User {

@@ -1,5 +1,15 @@
-.main-sidebar{
-
+.brand-link{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1em;
+    box-sizing: border-box;
+}
+.brand-link > i{
+    color: #ff5722;
+    font-size: 30px;
+    transform: rotate(-30deg);
+    margin-right: .5rem;
 }
 .nav .show{
     animation: show .5s ease-in-out forwards;

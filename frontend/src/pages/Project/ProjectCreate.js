@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import AuthContext from '../../context/auth-context';
 
 export default class ProjectCreate extends Component {
@@ -61,8 +62,21 @@ export default class ProjectCreate extends Component {
     render() {
         return (
             <div className='content-wrapper'>
-                <section className='content-header'>
-                    <h1>Create Project {this.props.userId}</h1>
+                <section className="content-header">
+                    <div className="container-fluid">
+                        <div className="row mb-2">
+                        <div className="col-sm-6">
+                            <h1>Create Project</h1>
+                        </div>
+                        <div className="col-sm-6">
+                            <ol className="breadcrumb float-sm-right">
+                            <li className="breadcrumb-item"><Link to='/'>Home</Link></li>
+                            <li className="breadcrumb-item"><Link to='/project'>Project</Link></li>
+                            <li className="breadcrumb-item active">Create</li>
+                            </ol>
+                        </div>
+                        </div>
+                    </div>
                 </section>
                 <div className='card card-primary'>
                     
@@ -98,7 +112,7 @@ export default class ProjectCreate extends Component {
                                 <input type="date" className="form-control" ref={this.endDateElRef} ></input> 
                             </div>
                         </div>
-                        <a href='#' className='btn btn-info'>Cancel</a>
+                        <Link to='/project' className='btn btn-info'>Cancel</Link>
                         <input type="submit" value="Create new Project" className="btn btn-success float-right" onClick={this.modalConfirmHandler}></input>
                     </div>
                     

@@ -33,16 +33,18 @@ app.use('/graphql', graphqlHttp({
     graphiql: true
 }));
 
-// mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-qpquf.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`).then(() =>{
-//     app.listen(8000)
-// }).catch(err => {
-//     console.log(err)
-// })
-mongoose.connect('mongodb://localhost/zero-bug', {useNewUrlParser: true});
-const db = mongoose.connection;
-db.once('open', () => console.log(`Connected to Mongo on ${db.host}:${db.port}`));
-db.on('error', (err) => {
-    console.log(`Database error:\n${err}`)
-});
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-qpquf.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`).then(() =>{
+    console.log("connected to Mongo")
+    app.listen(8000)
+}).catch(err => {
+    console.log(err)
+})
 
-app.listen(8000);
+// mongoose.connect('mongodb://localhost/zero-bug', {useNewUrlParser: true});
+// const db = mongoose.connection;
+// db.once('open', () => console.log(`Connected to Mongo on ${db.host}:${db.port}`));
+// db.on('error', (err) => {
+//     console.log(`Database error:\n${err}`)
+// });
+
+// app.listen(8000);
