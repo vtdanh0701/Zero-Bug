@@ -51,7 +51,7 @@ export default class ProjectEdit extends Component {
            `
         };
         
-        fetch('http://localhost:8000/graphql',{
+        fetch('/graphql',{
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {
@@ -115,7 +115,7 @@ export default class ProjectEdit extends Component {
         const token = this.context.token;
         console.log(token)
 
-        fetch('http://localhost:8000/graphql',{
+        fetch('/graphql',{
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {

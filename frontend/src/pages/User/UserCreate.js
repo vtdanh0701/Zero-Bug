@@ -62,7 +62,7 @@ export default class UserCreate extends Component {
         const token = this.context.token;
         console.log(token)
 
-        fetch('http://localhost:8000/graphql',{
+        fetch('/graphql',{
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {
