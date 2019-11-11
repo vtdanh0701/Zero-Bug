@@ -66,7 +66,7 @@ export default class User extends Component {
           };
         const token = this.context.token;
         
-        fetch('graphql', {
+        fetch('/graphql', {
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {

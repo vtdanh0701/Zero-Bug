@@ -71,7 +71,7 @@ export default class Bug extends Component {
           };
         const token = this.context.token;
         console.log("token : " + token)
-        fetch('http://192.168.0.11:8000/graphql', {
+        fetch('/graphql', {
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {
