@@ -148,7 +148,7 @@ export default class Bug extends Component {
                                     <td className="project-state">
                                         {status}
                                     </td>
-                                    <td className="project-actions text-right">
+                                    <div className="project-actions text-right">
                                         <Link to={url} className="btn btn-primary btn-sm" >
                                             <i className="fas fa-folder">
                                             </i>
@@ -165,7 +165,7 @@ export default class Bug extends Component {
                                             </i>
                                             Delete
                                         </a>
-                                    </td>
+                                    </div>
                                 </tr>
             )
         })

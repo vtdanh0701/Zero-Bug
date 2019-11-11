@@ -4,3 +4,9 @@
 #navbar__user-name{
     margin-left: 1em;
 }
+#signout_btn{
+    width: 100%;
+}
+#signout_btn:hover{
+    color: #ff5722;
+}

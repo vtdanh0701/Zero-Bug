@@ -98,7 +98,7 @@ export default class User extends Component {
             var url = `user/${user._id}/edit`
             var editButton = '';
             if(this.props.user.credential === "Admin" && user.email !== "admin@admin.com" ){
-                editButton = <td>
+                editButton = <div className="project-actions text-right">
                 <Link to={url} className="btn btn-primary btn-sm" >
                     <i className="fas fa-folder">
                     </i>
@@ -114,7 +114,9 @@ export default class User extends Component {
                     </i>
                     Delete
                 </a>
-            </td>
+            </div>
+            } else {
+                editButton = <td></td>
             }
             return (
                 <tr key={user._id}>

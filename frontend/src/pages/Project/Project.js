@@ -1,21 +1,29 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
+import Modal from '../../components/Modal/Modal'
 import AuthContext from '../../context/auth-context';
+import './Project.css'
 
 
 export default class Project extends Component {
     constructor(props){
         super(props);
         this.state={
-            projects: []
+            projects: [],
+            showModal: false
         }
+        this.toggleModal = this.toggleModal.bind(this)
     }
     static contextType = AuthContext;
 
     componentDidMount(){
         this.fetchProjects();
     }
-
+    toggleModal(){
+        this.setState(prevState => ({
+            showModal: !prevState.showModal
+        }))
+    }
     fetchProjects(){
         const requestBody = {
             query: `
@@ -111,6 +119,7 @@ export default class Project extends Component {
                 <li className='list-inline-item'>{res.assignee.firstName}</li>
             )
             return (
+
                 <tr key={project._id}>
                                     <td>
                                         {i+1}
@@ -138,8 +147,8 @@ export default class Project extends Component {
                                             {percent} Complete
                                         </small>
                                     </td>
-                                    <td className="project-actions text-right">
-                                        <Link to={url} className="btn btn-primary btn-sm" >
+                                    <div className='project-actions text-right'>
+                                    <Link to={url} className="btn btn-primary btn-sm" >
                                             <i className="fas fa-folder">
                                             </i>
                                             View
@@ -149,13 +158,16 @@ export default class Project extends Component {
                                             </i>
                                             Edit
                                         </Link>
-                                        <a className="btn btn-danger btn-sm" value={project._id} onClick={this.deleteProject.bind(this, project._id)}>
-                                            <i className="fas fa-trash">
+                                    <a className="btn btn-danger btn-sm"   value={project._id}   onClick={this.deleteProject.bind(this, project._id)}>
+                                    <i className="fas fa-trash">
                                             </i>
-                                            Delete
-                                        </a>
-                                    </td>
+                                        Delete
+                                    </a>
+                                    </div>
+                               
                                 </tr>
+            
+
             )
         })
 
@@ -191,13 +203,11 @@ export default class Project extends Component {
                                     <th style={{width: "20%"}}>
                                         Project Name
                                     </th>
-                                    <th style={{width: "30%"}}>
+                                    <th style={{width: "20%"}}>
                                         Team Members
                                     </th>
                                     <th>
                                         Project Progress
-                                    </th>
-                                    <th style={{width: "20%"}}>
                                     </th>
                                 </tr>
                                 </thead>

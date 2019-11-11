@@ -60,7 +60,6 @@
     "popper.js": "^1.15.0",
     "raphael": "^2.3.0",
     "react": "16.8.6",
-    "react-bootstrap": "0.32.4",
     "react-chartist": "0.13.3",
     "react-chartjs-2": "^2.8.0",
     "react-dom": "16.8.6",

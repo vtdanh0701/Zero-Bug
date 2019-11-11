@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Dashboard.css';
+
 import Charts from './Chart/Charts';
 import {Link} from 'react-router-dom';
 import { array } from 'prop-types';
@@ -134,7 +134,7 @@ export default class Dashboard extends Component {
                 </div>
                 <section className='content'>
                     <div className='row'>
-                        <div className="col-lg-3 col-6">
+                        <div className="col-sm-4">
 
                             <div className="small-box bg-info">
                             <div className="inner">
@@ -148,7 +148,7 @@ export default class Dashboard extends Component {
                             <Link to='/project'  className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></Link>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-6">
+                        <div className="col-sm-4">
 
                             <div className="small-box bg-warning">
                             <div className="inner">
@@ -162,7 +162,7 @@ export default class Dashboard extends Component {
                             <Link to='/issue'  className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></Link>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-6">
+                        <div className="col-sm-4">
 
                             <div className="small-box bg-success">
                             <div className="inner">
@@ -176,20 +176,7 @@ export default class Dashboard extends Component {
                             <Link to='/user' className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></Link>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-6">
-
-                            <div className="small-box bg-danger">
-                            <div className="inner">
-                                <h3>150</h3>
-
-                                <p>Message</p>
-                            </div>
-                            <div className="icon">
-                                <i className="far fa-envelope"></i>
-                            </div>
-                            <a  className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div className='row'>
                         <Charts data={this.state.data} labels={this.state.labels} projects={this.state.projects} bugs={this.state.bugs}/>
