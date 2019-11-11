@@ -39,7 +39,7 @@ app.get('*', function(req, res) {
 });
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-qpquf.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`).then(() =>{
     console.log("connected to Mongo")
-    app.listen(8000)
+    app.listen(process.env.PORT || 8000)
 }).catch(err => {
     console.log(err)
 })
