@@ -37,6 +37,7 @@ export default class Dashboard extends Component {
                     bugs{
                         _id
                         dueDate
+                        status
                     }
                 }
            `
@@ -70,20 +71,13 @@ export default class Dashboard extends Component {
             const getTotal = function(n){
                 let ctn = 0
                 let result = 0
-                console.log(projects)
                 for(var i = 0; i<=n.length-2;i++){
-                    // let ctn = 0;
-                    // console.log(n[i].startDate)
                     if(n[i].startDate.substring(5,7) === n[i+1].startDate.substring(5,7)){
-                        // console.log(n[i].bug.length + n[i+1].bug.length)
                         ctn += n[i].bug.length 
-                        console.log(ctn)
                     } else {
                         result = ctn + n[i].bug.length
                         ctn = 0;
-                        console.log("result " +result)
                     }
-
                 }
             }
             getTotal(projects)

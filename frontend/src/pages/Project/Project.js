@@ -30,6 +30,11 @@ export default class Project extends Component {
                             email
                             firstName
                         }
+                        bug{
+                            assignee{
+                                firstName
+                            }
+                        }
                     }
                 }
            `
@@ -97,8 +102,14 @@ export default class Project extends Component {
         });
     }
     render() {
+        
         const projectList = this.state.projects.map((project,i) => {
             var url = `project/${project._id}/edit`
+            var percent = (100/(project.bug.length +1) + "%").toString();
+
+            var memberList = project.bug.map(res => 
+                <li className='list-inline-item'>{res.assignee.firstName}</li>
+            )
             return (
                 <tr key={project._id}>
                                     <td>
@@ -115,31 +126,17 @@ export default class Project extends Component {
                                     </td>
                                     <td>
                                         <ul className="list-inline">
-                                            <li className="list-inline-item">
-                                                <img alt="Avatar" className="table-avatar" src="../../dist/img/avatar.png"/>
-                                            </li>
-                                            <li className="list-inline-item">
-                                                <img alt="Avatar" className="table-avatar" src="../../dist/img/avatar2.png"/>
-                                            </li>
-                                            <li className="list-inline-item">
-                                                <img alt="Avatar" className="table-avatar" src="../../dist/img/avatar3.png"/>
-                                            </li>
-                                            <li className="list-inline-item">
-                                                <img alt="Avatar" className="table-avatar" src="../../dist/img/avatar04.png"/>
-                                            </li>
+                                           {memberList}
                                         </ul>
                                     </td>
                                     <td className="project_progress">
                                         <div className="progress progress-sm">
-                                            <div className="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="100" style={{width: "57%"}}>
+                                            <div className="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="100" style={{width: percent}}>
                                             </div>
                                         </div>
                                         <small>
-                                            57% Complete
+                                            {percent} Complete
                                         </small>
-                                    </td>
-                                    <td className="project-state">
-                                        <span className="badge badge-success">Success</span>
                                     </td>
                                     <td className="project-actions text-right">
                                         <Link to={url} className="btn btn-primary btn-sm" >
@@ -161,6 +158,7 @@ export default class Project extends Component {
                                 </tr>
             )
         })
+
         return (
             <div className='content-wrapper'>
                 <section className="content-header">
@@ -198,9 +196,6 @@ export default class Project extends Component {
                                     </th>
                                     <th>
                                         Project Progress
-                                    </th>
-                                    <th style={{width: "8%"}} className="text-center">
-                                        Status
                                     </th>
                                     <th style={{width: "20%"}}>
                                     </th>

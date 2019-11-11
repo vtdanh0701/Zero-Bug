@@ -23,11 +23,11 @@ export default class Sidebar extends Component {
       if(selector.includes(newSelector)){
         this.setState({
           selector: this.state.selector.filter((_, i) => i != remove)
-        }, () => {console.log(this.state.selector)})
+        })
       } else {
         this.setState({
           selector: [...this.state.selector, newSelector]
-        }, ()=>{console.log(this.state.selector)})
+        })
       }
     }
     render() {
@@ -132,12 +132,14 @@ export default class Sidebar extends Component {
                   <p>All Users</p>
                 </NavLink>
               </li>
+              {this.props.user.credential == 'Admin' && 
               <li className="nav-item">
-                <NavLink to='/user/create' className="nav-link">
-                  <i className="far fa-circle nav-icon"></i>
-                  <p>Create Users</p>
-                </NavLink>
-              </li>
+              <NavLink to='/user/create' className="nav-link">
+                <i className="far fa-circle nav-icon"></i>
+                <p>Create Users</p>
+              </NavLink>
+            </li>
+            }
             </ul>
           </li>
         </ul>

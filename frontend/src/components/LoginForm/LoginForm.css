@@ -8,8 +8,8 @@
     width: 100%;
     color: #555;
 }
-#emailHelp{
-    color: rgba(0, 0, 0, .8);
+#message{
+    color: red;
     font-style: italic;
 }
 .auth-page .btn{

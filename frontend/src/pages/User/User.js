@@ -93,8 +93,29 @@ export default class User extends Component {
         });
     }
     render() {
+        console.log(this.props.user.email)
         const userList = this.state.users.map((user,i) => {
             var url = `user/${user._id}/edit`
+            var editButton = '';
+            if(this.props.user.credential === "Admin" && user.email !== "admin@admin.com" ){
+                editButton = <td>
+                <Link to={url} className="btn btn-primary btn-sm" >
+                    <i className="fas fa-folder">
+                    </i>
+                    View
+                </Link>
+                <Link to={url} className="btn btn-info btn-sm">
+                    <i className="fas fa-pencil-alt">
+                    </i>
+                    Edit
+                </Link>
+                <a className="btn btn-danger btn-sm" value={user._id} onClick={this.deleteUser.bind(this, user._id)}>
+                    <i className="fas fa-trash">
+                    </i>
+                    Delete
+                </a>
+            </td>
+            }
             return (
                 <tr key={user._id}>
                                     <td>
@@ -112,24 +133,8 @@ export default class User extends Component {
                                     <td className="user_credential">
                                         {user.credential}
                                     </td>
+                               {editButton}
                                     
-                                    <td className="user-actions text-right">
-                                        <Link to={url} className="btn btn-primary btn-sm" >
-                                            <i className="fas fa-folder">
-                                            </i>
-                                            View
-                                        </Link>
-                                        <Link to={url} className="btn btn-info btn-sm">
-                                            <i className="fas fa-pencil-alt">
-                                            </i>
-                                            Edit
-                                        </Link>
-                                        <a className="btn btn-danger btn-sm" value={user._id} onClick={this.deleteUser.bind(this, user._id)}>
-                                            <i className="fas fa-trash">
-                                            </i>
-                                            Delete
-                                        </a>
-                                    </td>
                                 </tr>
             )
         })
@@ -170,6 +175,9 @@ export default class User extends Component {
                                     </th>
                                     <th>
                                         Credential
+                                    </th>
+                                    <th>
+                                        
                                     </th>
                                 </tr>
                                 </thead>

@@ -6,7 +6,8 @@ import $ from 'jquery';
 class LoginForm extends Component {
     state = {
         isLogin: true,
-        dataDismiss: ''
+        dataDismiss: '',
+        message: '',
     }
 
     static contextType = AuthContext;
@@ -25,8 +26,6 @@ class LoginForm extends Component {
         if(email.trim().length === 0 || password.trim().length === 0){
             return;
         }
-        
-        
 
         let requestBody ={
             query: `
@@ -62,7 +61,11 @@ class LoginForm extends Component {
             }
         }).then(res => {
             if ( res.status !== 200 && res.status !== 201){
+                this.setState({
+                    message:'Invalid Email/Password'
+                })
                 throw new Error('Failed!');
+                
             } 
             return res.json();
         }).then(resData => {
@@ -95,12 +98,12 @@ class LoginForm extends Component {
             <div className="form-group">
               <label htmlFor="email">Email address</label>
               <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" ref={this.emailEl}/>
-              <small id="emailHelp" className="emailHelp">We'll never share your email with anyone else.</small>
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input type="password" className="form-control" id="password" placeholder="Password" ref={this.passwordEl}/>
             </div>
+            <small id="message" className="message">{this.state.message}</small>
             <button type="submit" className="btn">LOG IN</button>
 
           </form>

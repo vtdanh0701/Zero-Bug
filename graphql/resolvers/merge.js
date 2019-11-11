@@ -56,7 +56,6 @@ const singleProject = async projectId => {
 }
 
 const transformProject = project => { 
-    console.log(project.bug)
     return { 
         ...project._doc,
         bug: bugs.bind(this, project._doc.bug),

@@ -4,27 +4,7 @@ import { Doughnut, Line } from 'react-chartjs-2';
 
 
 
-const doughnut = {
-  labels: [
-    'Open',
-    'Close',
-    'InProgress',
-  ],
-  datasets: [
-    {
-      data: [300, 50, 100],
-      backgroundColor: [
-        '#FF6384',
-        '#36A2EB',
-        '#FFCE56',
-      ],
-      hoverBackgroundColor: [
-        '#FF6384',
-        '#36A2EB',
-        '#FFCE56',
-      ],
-    }],
-};
+
 
 const options = {
   tooltips: {
@@ -43,7 +23,21 @@ class Charts extends Component {
     const labels = this.props.labels
     const data = this.props.data
     var newLabels = Object.values(labels)
-
+    const bugs = this.props.bugs;
+    var openBug = 0;
+    var inProgress = 0;
+    var closed = 0
+    bugs.forEach( bug =>{
+      if(bug.status == 'Open'){
+        openBug += 1
+      }
+      if(bug.status == 'InProgress'){
+        inProgress += 1
+      }
+      if(bug.status == 'Closed'){
+        closed += 1
+      }
+    })
 
 
     const line = {
@@ -71,6 +65,27 @@ class Charts extends Component {
           data: data,
         }
       ],
+    };
+    const doughnut = {
+      labels: [
+        'Open',
+        'Close',
+        'InProgress',
+      ],
+      datasets: [
+        {
+          data: [openBug, closed, inProgress],
+          backgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56',
+          ],
+          hoverBackgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#FFCE56',
+          ],
+        }],
     };
     return (
       <>

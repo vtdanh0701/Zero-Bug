@@ -32,6 +32,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state ={
+      user: {},
       token: null,
       userId: null,
       tokenExpiration: null,
@@ -39,6 +40,7 @@ class App extends Component {
     }
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
+    this.fetchUser = this.fetchUser.bind(this);
   }
   
   componentDidMount(){
@@ -50,8 +52,44 @@ class App extends Component {
       token,
       userId,
       tokenExpiration
-    })
+    });
+    this.fetchUser(userId);
   }
+
+  fetchUser = (id) =>{
+    const requestBody = {
+        query: `
+            query {
+                singleUser(userId: "${id}"){
+                    firstName
+                    lastName
+                    email
+                    address
+                    credential
+                }
+            }
+        `
+    }
+
+    fetch('http://localhost:8000/graphql',{
+        method: 'POST',
+        body: JSON.stringify(requestBody),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => {
+        if(res.status !== 200 && res.status !== 201){
+            throw new Error('Failed')
+        }
+        return res.json()
+    }).then(resData => {
+        const user = resData.data.singleUser
+        this.setState({
+            user: user
+        })
+
+    }).catch(err => console.log(err))
+}
   logout = () => {
     this.setState({
       token: null,
@@ -71,7 +109,7 @@ class App extends Component {
         {this.state.token && 
         <div className='wrapper'>
           {/* <Navbar/> */}
-          <Route path='/' render={(props) => <MainPage {...props} userId={this.state.userId} logout={this.logout}/>}/>
+          <Route path='/' render={(props) => <MainPage {...props} user={this.state.user} logout={this.logout}/>}/>
         </div>}
         <React.Fragment>
         <AuthContext.Provider 
@@ -105,7 +143,7 @@ class App extends Component {
               <Route path='/issue' exact  component={Bug}/>
               <Route path='/issue/create' exact render={(props) =><BugCreate {...props} token={this.state.token} userId={this.state.userId}/> }/>
               <Route path='/bug/:id/edit' exact render={(props) => <BugEdit {...props}/>}/>
-              <Route path='/user' exact render={(props) => <User {...props}/>}/>
+              <Route path='/user' exact render={(props) => <User user={this.state.user} {...props}/>}/>
               <Route path='/user/create' exact render={(props) => <UserCreate {...props}/>}/>
               <Route path='/user/:id/edit' exact render={(props) => <UserEdit {...props}/>}/>
 

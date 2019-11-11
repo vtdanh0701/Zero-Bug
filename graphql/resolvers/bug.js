@@ -98,7 +98,6 @@ module.exports = {
     editBug: async (args, req) => {
         const fetchedAssignee = await User.findById(args.assigneeId)
         Bug.findById(args.bugId, function(err, bug){
-            console.log(bug.assignee)
             if(args.assigneeId !== bug.assignee._id){
                 User.findById((bug.assignee._id), function(err,user){
                     if(!user){
