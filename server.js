@@ -10,7 +10,6 @@ const graphQlSchema = require('./graphql/schema/index');
 const graphQlResolvers = require('./graphql/resolvers/index');
 
 const app = express();
-app.use(express.static(__dirname + '/frontend/build'));
 
 app.use(helmet());
 app.use(cors());
@@ -31,16 +30,19 @@ app.use(isAuth);
 app.use('/graphql', graphqlHttp({
     schema: graphQlSchema,
     rootValue: graphQlResolvers,
-    graphiql: true
+    graphiql: false
 }));
 
+app.use(express.static(__dirname + '/frontend/build'));
 app.get('*', function(req, res) {
 	res.sendFile(__dirname + '/frontend/build/index.html');
 });
+
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-qpquf.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`).then(() =>{
     console.log("connected to Mongo")
-    app.listen(process.env.PORT || 8000)
 }).catch(err => {
     console.log(err)
 })
+
+app.listen(process.env.PORT || 8000)
 
