@@ -40,11 +40,3 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PA
     console.log(err)
 })
 
-// mongoose.connect('mongodb://localhost/zero-bug', {useNewUrlParser: true});
-// const db = mongoose.connection;
-// db.once('open', () => console.log(`Connected to Mongo on ${db.host}:${db.port}`));
-// db.on('error', (err) => {
-//     console.log(`Database error:\n${err}`)
-// });
-
-// app.listen(8000);

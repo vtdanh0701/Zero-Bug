@@ -109,11 +109,11 @@ export default class User extends Component {
                     </i>
                     Edit
                 </Link>
-                <a className="btn btn-danger btn-sm" value={user._id} onClick={this.deleteUser.bind(this, user._id)}>
+                <button className="btn btn-danger btn-sm" value={user._id} onClick={this.deleteUser.bind(this, user._id)}>
                     <i className="fas fa-trash">
                     </i>
                     Delete
-                </a>
+                </button>
             </div>
             } else {
                 editButton = <td></td>
@@ -124,9 +124,9 @@ export default class User extends Component {
                                         {i+1}
                                     </td>
                                     <td>
-                                        <a>
+                                        <div>
                                             {user.firstName} {user.lastName}
-                                        </a>
+                                        </div>
                                         <br/>
                                     </td>
                                     <td>

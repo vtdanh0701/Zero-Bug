@@ -22,7 +22,7 @@ export default class Sidebar extends Component {
       let remove = this.state.selector.indexOf(newSelector)
       if(selector.includes(newSelector)){
         this.setState({
-          selector: this.state.selector.filter((_, i) => i != remove)
+          selector: this.state.selector.filter((_, i) => i !== remove)
         })
       } else {
         this.setState({
@@ -132,7 +132,7 @@ export default class Sidebar extends Component {
                   <p>All Users</p>
                 </NavLink>
               </li>
-              {this.props.user.credential == 'Admin' && 
+              {this.props.user.credential === 'Admin' && 
               <li className="nav-item">
               <NavLink to='/user/create' className="nav-link">
                 <i className="far fa-circle nav-icon"></i>

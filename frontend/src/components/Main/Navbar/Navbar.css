@@ -10,3 +10,8 @@
 #signout_btn:hover{
     color: #ff5722;
 }
+#toggle_btn{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}

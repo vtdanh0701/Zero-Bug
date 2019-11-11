@@ -15,9 +15,7 @@ const options = {
 }
 
 class Charts extends Component {
-  constructor(props){
-    super(props)
-  }
+  
 
   render() {
     const labels = this.props.labels
@@ -28,13 +26,13 @@ class Charts extends Component {
     var inProgress = 0;
     var closed = 0
     bugs.forEach( bug =>{
-      if(bug.status == 'Open'){
+      if(bug.status === 'Open'){
         openBug += 1
       }
-      if(bug.status == 'InProgress'){
+      if(bug.status === 'InProgress'){
         inProgress += 1
       }
-      if(bug.status == 'Closed'){
+      if(bug.status === 'Closed'){
         closed += 1
       }
     })

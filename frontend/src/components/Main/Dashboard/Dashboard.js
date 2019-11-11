@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-
 import Charts from './Chart/Charts';
 import {Link} from 'react-router-dom';
-import { array } from 'prop-types';
+
 export default class Dashboard extends Component {
     state = {
         projects: [],
@@ -60,8 +59,7 @@ export default class Dashboard extends Component {
             const monthNums = this.state.monthNums;
             const months = this.state.months;
             const labels = this.state.labels;
-            const bugData = this.state.bugData
-            var count = this.state.count
+          
             function mycomparator(a,b) {
                 return parseInt(a.startDate.substring(5,7), 10) - parseInt(b.startDate.substring(5,7), 10);
               }
@@ -92,7 +90,7 @@ export default class Dashboard extends Component {
                 }
               })
             monthNums.map((monthNum) => {
-              labels.push(months[monthNum-1])
+              return labels.push(months[monthNum-1])
             })
             var labelArr = Object.values(labels);
             var counts = {};
@@ -125,7 +123,7 @@ export default class Dashboard extends Component {
                         </div>
                         <div className="col-sm-6">
                             <ol className="breadcrumb float-sm-right">
-                            <li className="breadcrumb-item"><a >Home</a></li>
+                            <li className="breadcrumb-item">Home</li>
                             <li className="breadcrumb-item active">Dashboard</li>
                             </ol>
                         </div>

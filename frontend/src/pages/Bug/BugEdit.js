@@ -91,7 +91,7 @@ export default class BugEdit extends Component {
             }
             return res.json()
         }).then(resData => {
-            const projects = resData.data.projects;
+
             const users = resData.data.users;
             const bug = resData.data.singleBug;
             const project = bug.project.name;
@@ -182,7 +182,7 @@ export default class BugEdit extends Component {
 
         const userListOptions = [];
         this.state.users.map((user) => {
-            userListOptions.push({value: user._id,label: user.firstName})
+            return userListOptions.push({value: user._id,label: user.firstName})
         })
         
         const { selectedUser } = this.state

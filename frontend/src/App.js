@@ -3,12 +3,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-do
 import './App.css';
 import './Animate.css';
 
-
-import LandingPage from './pages/LandingPage';
 import MainPage from './pages/Main';
-import BookingsPage from './pages/Bookings';
-import ProjectsPage from './pages/Projects';
-
 import AuthContext from './context/auth-context';
 
 import Dashboard from './components/Main/Dashboard/Dashboard';
@@ -21,8 +16,6 @@ import BugEdit from './pages/Bug/BugEdit'
 import User from './pages/User/User';
 import UserCreate from './pages/User/UserCreate';
 import UserEdit from './pages/User/UserEdit';
-import Sidebar from './components/Main/Sidebar/Sidebar';
-import Navbar from './components/Main/Navbar/Navbar';
 import SplashScreen from './components/SplashScreen/SplashScreen'
 import NewLandingPage from './pages/NewLandingPage';
 

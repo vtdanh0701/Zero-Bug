@@ -129,9 +129,9 @@ export default class Bug extends Component {
                                         {i+1}
                                     </td>
                                     <td>
-                                        <a>
+                                        <div>
                                             {bug.name}
-                                        </a>
+                                        </div>
                                         <br/>
                                         <small>
                                             Created by {bug.creator.firstName}
@@ -159,12 +159,12 @@ export default class Bug extends Component {
                                             </i>
                                             Edit
                                         </Link>
-                                        <a className="btn btn-danger btn-sm" value={bug._id}
+                                        <button className="btn btn-danger btn-sm" value={bug._id}
                                         onClick={this.deleteBug.bind(this, bug._id)} >
                                             <i className="fas fa-trash">
                                             </i>
                                             Delete
-                                        </a>
+                                        </button>
                                     </div>
                                 </tr>
             )

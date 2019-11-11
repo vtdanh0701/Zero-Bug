@@ -150,11 +150,13 @@ export default class BugCreate extends Component {
     render() {
         const projectListOptions = [];
         this.state.projects.map((project,i) => {
-            projectListOptions.push({ value: project._id, label: project.name })
+            return projectListOptions.push({ value: project._id, label: project.name })
+            
         })
         const userListOptions = [];
         this.state.users.map((user) => {
-            userListOptions.push({value: user._id,label: user.firstName})
+            return userListOptions.push({value: user._id,label: user.firstName})
+            
         })
         
         const { selectedProject } = this.state

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
-import Modal from '../../components/Modal/Modal'
 import AuthContext from '../../context/auth-context';
 import './Project.css'
 
@@ -125,9 +124,9 @@ export default class Project extends Component {
                                         {i+1}
                                     </td>
                                     <td>
-                                        <a>
+                                        <div>
                                             {project.name}
-                                        </a>
+                                        </div>
                                         <br/>
                                         <small>
                                             Created by {project.creator.firstName}
@@ -140,7 +139,7 @@ export default class Project extends Component {
                                     </td>
                                     <td className="project_progress">
                                         <div className="progress progress-sm">
-                                            <div className="progress-bar bg-green" role="progressbar" aria-volumenow="57" aria-volumemin="0" aria-volumemax="100" style={{width: percent}}>
+                                            <div className="progress-bar bg-green" role="progressbar" aria-valuenow={percent} aria-valuemin="0" aria-valuemax="100" style={{width: percent}}>
                                             </div>
                                         </div>
                                         <small>
@@ -158,11 +157,11 @@ export default class Project extends Component {
                                             </i>
                                             Edit
                                         </Link>
-                                    <a className="btn btn-danger btn-sm"   value={project._id}   onClick={this.deleteProject.bind(this, project._id)}>
+                                    <button className="btn btn-danger btn-sm"   value={project._id}   onClick={this.deleteProject.bind(this, project._id)}>
                                     <i className="fas fa-trash">
                                             </i>
                                         Delete
-                                    </a>
+                                    </button>
                                     </div>
                                
                                 </tr>
