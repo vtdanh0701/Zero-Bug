@@ -20,7 +20,7 @@ Bug Tracking System must be in place for every infrastructure we design. Softwar
 <img width="300" display="inline-block" alt="mobile" src="./screenshot/mobile3.png">
 
 ### Database Schema
-<img alt="schema" scr="https://user-images.githubusercontent.com/50365909/68641667-70261f80-04c0-11ea-9a5b-4a3f58f413a5.png">
+![schema](https://user-images.githubusercontent.com/50365909/68641667-70261f80-04c0-11ea-9a5b-4a3f58f413a5.png)
 
 ### Usecase Diagram 
 <img alt="schema" scr="./screenshot/Usecase.png">
