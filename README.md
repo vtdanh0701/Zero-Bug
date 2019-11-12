@@ -15,15 +15,15 @@ Bug Tracking System must be in place for every infrastructure we design. Softwar
 <img width="1280" alt="dashboard" src="./screenshot/dashboard.png">
 
 ### Mobile View 
-<img width="300" alt="mobile" src="./screenshot/mobile.png">
-<img width="300" alt="mobile" src="./screenshot/mobile2.png">
-<img width="300" alt="mobile" src="./screenshot/mobile3.png">
+<img width="300" display="inline-block" alt="mobile" src="./screenshot/mobile.png">
+<img width="300" display="inline-block" alt="mobile" src="./screenshot/mobile2.png">
+<img width="300" display="inline-block" alt="mobile" src="./screenshot/mobile3.png">
 
 ### Database Schema
-<img width="1280" alt="schema" scr="./screenshot/schema.png">
+<img alt="schema" scr="https://user-images.githubusercontent.com/50365909/68641667-70261f80-04c0-11ea-9a5b-4a3f58f413a5.png">
 
 ### Usecase Diagram 
-<img width="1280" alt="schema" scr="./screenshot/Usecase.png">
+<img alt="schema" scr="./screenshot/Usecase.png">
 
 ## Future Implementation 
 First feature I would love to add is a messenger for all user to contact with each other. 
