@@ -1,6 +1,6 @@
 # Zero Bug - Project Management and Bug Tracking App 
 
-<a href="https://zerobug.herokuapp.com/">LIVE DEMO</a>
+## <a href="https://zerobug.herokuapp.com/">LIVE DEMO</a>
 
 *For demo please log in with email: admin@admin.com , password: admin*
 
@@ -31,12 +31,14 @@ I also would like to add a new feed and a notification system using GraphQL subc
 
 ## Build With 
 
-*GraphQL
-*AdminLTE Template
-*MongoDB Atlas 
-*FontAwesome Icons
-*Bootstrap 
-*React Graph 
+<ul>
+    <li>GraphQL</li>
+    <li>AdminLTE Template</li>
+    <li>MongoDB Atlas</li>
+    <li>FontAwesome Icons</li>
+    <li>Bootstrap</li>  
+</ul>
+
 
 
 
