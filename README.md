@@ -23,19 +23,20 @@ Bug Tracking System must be in place for every infrastructure we design. Softwar
 ![schema](https://user-images.githubusercontent.com/50365909/68641667-70261f80-04c0-11ea-9a5b-4a3f58f413a5.png)
 
 ### Usecase Diagram 
-<img alt="schema" scr="./screenshot/Usecase.png">
+![Usecase](https://user-images.githubusercontent.com/50365909/68641794-ca26e500-04c0-11ea-929b-6be003df1746.png)
 
 ## Future Implementation 
 First feature I would love to add is a messenger for all user to contact with each other. 
 I also would like to add a new feed and a notification system using GraphQL subcription.
 
 ## Build With 
-_ GraphQL
-_ AdminLTE Template
-_ MongoDB Atlas 
-_ FontAwesome Icons
-_ Bootstrap 
-_ React Graph 
+
+_GraphQL
+_AdminLTE Template
+_MongoDB Atlas 
+_FontAwesome Icons
+_Bootstrap 
+_React Graph 
 
 
 
