@@ -28,8 +28,8 @@ Bug Tracking System must be in place for every infrastructure we design. Softwar
 ![Usecase](https://user-images.githubusercontent.com/50365909/68641794-ca26e500-04c0-11ea-929b-6be003df1746.png)
 
 ## Future Implementation 
-First feature I would love to add is a messenger for all user to contact with each other. 
-I also would like to add a new feed and a notification system using GraphQL subcription.
+The first feature I would love to add is a messenger for all users to contact with each other. 
+I also would like to add a new feed and a notification system using GraphQL subscription.
 
 ## Build With 
 
