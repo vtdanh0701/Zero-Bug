@@ -8,6 +8,8 @@
 Bug Tracking System must be in place for every infrastructure we design. Software is no exception to this. This application is designed to track the status of bugs that are reported during Software testing.
 
 ## Screenshot 
+### Welcome Screen
+![](./screenshot/welcome-screen.gif)
 ### Landing Page
 <img width="1280" alt="login" src="./screenshot/login.png">
 
@@ -15,9 +17,9 @@ Bug Tracking System must be in place for every infrastructure we design. Softwar
 <img width="1280" alt="dashboard" src="./screenshot/dashboard.png">
 
 ### Mobile View 
-<img width="250" height="800" display="inline" alt="mobile" src="./screenshot/mobile.png">
-<img width="250" height="800" display="inline" alt="mobile" src="./screenshot/mobile2.png">
-<img width="250" height="800" display="inline" alt="mobile" src="./screenshot/mobile3.png">
+<img width="300" display="inline" alt="mobile" src="./screenshot/mobile.png">
+<img width="300" display="inline" alt="mobile" src="./screenshot/mobile2.png">
+<img width="300" display="inline" alt="mobile" src="./screenshot/mobile3.png">
 
 ### Database Schema
 ![schema](https://user-images.githubusercontent.com/50365909/68641667-70261f80-04c0-11ea-9a5b-4a3f58f413a5.png)
