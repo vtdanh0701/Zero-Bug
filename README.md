@@ -15,4 +15,4 @@ Bug Tracking System must be in place for every infrastructure we design. Softwar
 <img width="1280" alt="dashboard" src="./screenshot/dashboard.png">
 
 ### Mobile View 
-<img width="1280" alt="mobile" src="./screenshot/mobile.png">
+<img width="400" alt="mobile" src="./screenshot/mobile.png">
