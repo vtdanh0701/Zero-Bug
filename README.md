@@ -31,12 +31,12 @@ I also would like to add a new feed and a notification system using GraphQL subc
 
 ## Build With 
 
-_GraphQL
-_AdminLTE Template
-_MongoDB Atlas 
-_FontAwesome Icons
-_Bootstrap 
-_React Graph 
+*GraphQL
+*AdminLTE Template
+*MongoDB Atlas 
+*FontAwesome Icons
+*Bootstrap 
+*React Graph 
 
 
 
