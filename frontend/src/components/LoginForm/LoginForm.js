@@ -97,12 +97,13 @@ class LoginForm extends Component {
             <form onSubmit={this.submitHandler}>
             <div className="form-group">
               <label htmlFor="email">Email address</label>
-              <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" ref={this.emailEl}/>
+              <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter admin@admin.com for demo" ref={this.emailEl}/>
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input type="password" className="form-control" id="password" placeholder="Password" ref={this.passwordEl}/>
+              <input type="password" className="form-control" id="password" placeholder="Password is admin" ref={this.passwordEl}/>
             </div>
+            
             <small id="message" className="message">{this.state.message}</small>
             <button type="submit" className="btn">LOG IN</button>
 

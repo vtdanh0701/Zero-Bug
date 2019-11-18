@@ -30,7 +30,7 @@ app.use(isAuth);
 app.use('/graphql', graphqlHttp({
     schema: graphQlSchema,
     rootValue: graphQlResolvers,
-    graphiql: false
+    graphiql: true
 }));
 
 app.use(express.static(__dirname + '/frontend/build'));
